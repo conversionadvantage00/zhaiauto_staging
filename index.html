@@ -1026,6 +1026,136 @@ main{padding-block:0 64px}
 .wa-float.away{transform:scale(0)}
 .ctray.on ~ .wa-float{bottom:calc(90px + env(safe-area-inset-bottom,0px))}
 
+/* ---------- round 7: offer banners (section layout "promo") ---------- */
+.stock.is-promo .stock-head{margin-bottom:22px}
+.pr{margin:0 var(--gutter);position:relative}
+.pr-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain;border-radius:var(--r-card);outline:0}
+.pr-track::-webkit-scrollbar{display:none}
+.pr-track:focus-visible{box-shadow:0 0 0 3px var(--accent)}
+.pr-s{flex:0 0 100%;min-width:0;scroll-snap-align:start;scroll-snap-stop:always;position:relative;isolation:isolate;overflow:hidden;border-radius:var(--r-card);height:clamp(480px,min(42vw,100vh - 150px),660px);display:flex;background:#0b0c0e;color:#fff}
+.pr-media{overflow:hidden}
+.pr-media img{display:block;width:100%;height:100%;object-fit:cover;object-position:var(--f,50% 50%);transform:scale(1.06);transition:opacity .45s ease,transform 7s cubic-bezier(.2,.6,.2,1)}
+.pr-s.on .pr-media img{transform:scale(1)}
+.pr-tx{position:relative;display:flex;flex-direction:column;align-items:flex-start;padding:clamp(28px,4vw,60px);max-width:660px;min-width:0}
+.pr-tx .eyb{margin:0 0 14px}
+.pr-badge{display:inline-flex;align-items:center;height:28px;padding:0 12px;border-radius:999px;background:var(--accent);color:#fff;font-size:12.5px;font-weight:700;letter-spacing:.02em;margin:0 0 16px}
+.pr-tx h3{margin:0;font-family:var(--display);font-weight:700;font-size:clamp(24px,2.4vw,34px);line-height:1.05;letter-spacing:-.015em}
+.pr-sub{margin:6px 0 0;font-size:16px;opacity:.78}
+.pr-fig{margin:18px 0 0;display:flex;flex-direction:column;gap:6px}
+.pr-fig b{font-family:var(--display);font-weight:800;font-stretch:125%;font-size:clamp(50px,6.6vw,108px);line-height:.9;letter-spacing:-.01em;white-space:nowrap}
+.pr-fig small{font-size:15px;font-weight:500;opacity:.8}
+.pr-txt{margin:16px 0 0;font-size:17px;line-height:1.5;max-width:42ch;opacity:.88}
+.pr-acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.pr-terms{margin:14px 0 0;font-size:12px;line-height:1.45;opacity:.6;max-width:56ch}
+/* full: photo behind, dark wash, white text */
+.pr-s.full .pr-media{position:absolute;inset:0;z-index:-2}
+.pr-s.full::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.74) 0%,rgba(0,0,0,.46) 34%,rgba(0,0,0,0) 62%),linear-gradient(180deg,rgba(0,0,0,0) 50%,rgba(0,0,0,.5) 100%)}
+.pr-s.full .pr-tx{align-self:flex-end}
+.pr-s.full .eyb{color:rgba(255,255,255,.82)}
+.pr-s.full .eyb i{background:#fff}
+.pr-s.full .pg-btn.pri{background:#fff;color:#0a0b0d;border-color:#fff}
+.pr-s.full .pg-btn.pri:hover{background:transparent;color:#fff}
+.pr-s.full .pg-btn:not(.pri){color:#fff;border-color:rgba(255,255,255,.55);background:transparent}
+.pr-s.full .pg-btn:not(.pri):hover{border-color:#fff}
+/* split: photo and a coloured text panel */
+.pr-s.split,.pr-s.split-rev{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);background:var(--tint,#f4efe9);color:var(--ink)}
+.pr-s.split-rev{grid-template-columns:minmax(0,1fr) minmax(0,1.45fr)}
+.pr-s.split-rev .pr-media{order:2}
+.pr-s.split .pr-media,.pr-s.split-rev .pr-media{position:relative}
+.pr-s.split .pr-media img,.pr-s.split-rev .pr-media img{position:absolute;inset:0}
+.pr-s.split .pr-tx,.pr-s.split-rev .pr-tx{align-self:center}
+/* studio: the car on a plain panel, a large faded word behind it */
+.pr-s.studio{background:radial-gradient(120% 95% at 72% 58%,#ffffff 0%,var(--tint,#ebe9e4) 72%);color:var(--ink)}
+.pr-s.studio .pr-media{position:absolute;inset:0;padding:4% 3% 4% 38%;display:flex;align-items:center;justify-content:center;background:radial-gradient(120% 95% at 72% 58%,#ffffff 0%,var(--tint,#ebe9e4) 72%)!important}
+.pr-s.studio .pr-media img{position:relative;width:100%;height:92%;object-fit:contain;mix-blend-mode:multiply;transform:translateX(7%)}
+.pr-s.studio.on .pr-media img{transform:none}
+.pr-wm{position:absolute;right:3%;top:8%;font-family:var(--display);font-weight:800;font-stretch:125%;text-transform:uppercase;font-size:clamp(70px,11vw,190px);line-height:1;color:rgba(18,20,25,.06);white-space:nowrap;pointer-events:none}
+.pr-s.studio .pr-tx{align-self:center}
+:is(.pr-s.split,.pr-s.split-rev,.pr-s.studio) :is(.pr-sub,.pr-txt,.pr-terms){color:var(--muted);opacity:1}
+/* slider foot: progress dots + counter */
+.pr-foot{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:16px}
+.pr-dots{display:flex;gap:6px;flex-wrap:wrap}
+.pr-dots button{background:none;border:0;padding:10px 0;cursor:pointer}
+.pr-dots i{display:block;width:28px;height:3px;border-radius:3px;background:var(--line-strong);position:relative;overflow:hidden;transition:width .3s}
+.pr-dots i::after{content:"";position:absolute;inset:0;background:var(--ink);transform:scaleX(0);transform-origin:0 50%}
+.pr-dots button.on i{width:52px}
+.pr-dots button.on i::after{animation:lnbar var(--pr-t,6500ms) linear forwards}
+.pr-dots button.done i::after{transform:scaleX(1)}
+.pr.paused .pr-dots button.on i::after,.pr.still .pr-dots button.on i::after{animation-play-state:paused}
+.pr.still .pr-dots button.on i::after{animation:none;transform:scaleX(1)}
+.pr-num{font-size:13px;font-weight:600;color:var(--muted);letter-spacing:.06em}
+.pr-num b{color:var(--ink)}
+@media (max-width:1000px){.pr-s.split,.pr-s.split-rev{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}.pr-s.split-rev{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr)}}
+@media (max-width:767px){
+  .pr{margin:0 12px}
+  .pr-track{gap:10px}
+  .pr-s,.pr-s.split,.pr-s.split-rev{display:flex;flex-direction:column;height:auto}
+  .pr-s .pr-media,.pr-s.full .pr-media,.pr-s.split-rev .pr-media{position:relative;inset:auto;z-index:0;order:0;aspect-ratio:4/3;flex:none}
+  .pr-s .pr-media img,.pr-s.split .pr-media img,.pr-s.split-rev .pr-media img{position:static;object-position:var(--fm,var(--f,50% 50%))}
+  .pr-s.full::before{display:none}
+  .pr-s.full .pr-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,12,14,0) 55%,#0b0c0e 100%)}
+  .pr-s.studio .pr-media{position:relative;aspect-ratio:16/11;padding:8% 4% 2%}
+  .pr-s.studio .pr-media img{height:100%}
+  .pr-wm{font-size:64px;top:10%;right:auto;left:50%;transform:translateX(-50%)}
+  .pr-tx{padding:20px 20px 24px;max-width:none;flex:1;align-self:stretch}
+  .pr-s.full .pr-tx{margin-top:-28px}
+  .pr-fig{margin-top:14px}
+  .pr-fig b{font-size:clamp(44px,13vw,60px)}
+  .pr-txt{font-size:15.5px;margin-top:12px}
+  .pr-acts{margin-top:auto;padding-top:20px;width:100%}
+  .pr-acts .pg-btn{flex:1;padding:0 14px}
+  .pr-foot{margin-top:12px}
+  .pr-dots i{width:18px}.pr-dots button.on i{width:36px}
+}
+@media (prefers-reduced-motion:reduce){.pr-media img{transform:none!important;transition:opacity .2s}.pr-dots button.on i::after{animation:none;transform:scaleX(1)}}
+
+/* ---------- round 7: hero becomes a swipe slider on phones ---------- */
+.pg-story.swipe .pg-story-pin{position:relative;height:86vh;height:86svh;touch-action:pan-y}
+.pg-story.swipe .pg-story-media .sc{transition:opacity 1s ease;transform:scale(1.08)}
+.pg-story.swipe .pg-story-media .sc.on{transform:scale(1);transition:opacity 1s ease,transform 7s linear}
+.pg-story.swipe .pg-story-tx .st{transition:opacity .55s ease .2s,transform .55s ease .2s}
+.pg-story.swipe .pg-story-nav{bottom:18px}
+.pg-story.swipe .pg-story-nav button{padding:14px 0}
+.pg-story.swipe .pg-story-nav button i::after{transform:scaleX(0)}
+.pg-story.swipe .pg-story-nav button.on i::after{animation:lnbar var(--sc-t,6000ms) linear forwards}
+.pg-story.swipe.paused .pg-story-nav button.on i::after{animation-play-state:paused}
+.pg-story.swipe .pg-story-tx{bottom:72px}
+
+/* ---------- round 7: mobile menu ---------- */
+.menu-btn{display:none;flex:none;position:relative;width:40px;height:40px;border-radius:999px;border:1px solid var(--line-strong);background:transparent;color:var(--ink);padding:0;cursor:pointer}
+.menu-btn span{position:absolute;left:12px;right:12px;height:2px;border-radius:2px;background:currentColor}
+.menu-btn span:nth-child(1){top:13px}.menu-btn span:nth-child(2){top:19px}.menu-btn span:nth-child(3){top:25px;right:17px}
+@media (max-width:720px){.menu-btn{display:block}.head-cta{margin-left:auto}}
+.mnav{position:fixed;inset:0;z-index:55;background:var(--bg);color:var(--ink);display:flex;flex-direction:column;overflow-y:auto;overscroll-behavior:contain;opacity:0;transform:translateY(-10px);transition:opacity .25s ease,transform .35s cubic-bezier(.2,.8,.2,1)}
+.mnav[hidden]{display:none}
+.mnav.open{opacity:1;transform:none}
+.mnav-top{flex:none;display:flex;align-items:center;justify-content:space-between;gap:12px;height:64px;padding:env(safe-area-inset-top,0px) var(--gutter) 0;box-sizing:content-box;border-bottom:1px solid var(--line);background:var(--surface)}
+.mnav-x{width:40px;height:40px;border-radius:999px;border:1px solid var(--line-strong);background:transparent;color:var(--ink);display:grid;place-items:center;padding:0;cursor:pointer}
+.mnav-x svg{width:18px;height:18px}
+.mnav-body{flex:1;padding:6px var(--gutter) 0}
+.mnav-big{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:17px 0;border-bottom:1px solid var(--line);font-family:var(--display);font-weight:700;font-size:27px;line-height:1.1;letter-spacing:-.015em;text-decoration:none;color:var(--ink)}
+.mnav-big em{font-style:normal;font-family:inherit;font-size:12.5px;font-weight:700;letter-spacing:.02em;padding:5px 10px;border-radius:999px;background:var(--accent);color:#fff}
+.mnav-big svg{width:20px;height:20px;color:var(--faint);flex:none}
+.mnav-lbl{margin:20px 0 10px;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.mnav-brands{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.mnav-brands a{display:flex;align-items:center;gap:10px;min-height:60px;padding:10px 12px;border-radius:14px;background:var(--surface);border:1px solid var(--line);text-decoration:none;color:var(--ink)}
+.mnav-brands img{width:44px;height:30px;object-fit:contain;flex:none}
+.mnav-brands b{display:block;font-size:15px;font-weight:600}
+.mnav-brands small{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+.mnav-foot{flex:none;display:grid;gap:10px;padding:20px var(--gutter) calc(22px + env(safe-area-inset-bottom,0px))}
+.mnav-foot .pg-btn{width:100%;gap:8px}
+.mnav-foot .pg-btn.pri{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.mnav-foot .pg-btn svg{width:18px;height:18px}
+.mnav-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mnav-foot p{margin:4px 0 0;font-size:13px;line-height:1.5;color:var(--muted);text-align:center}
+.mnav.open .mnav-body > *,.mnav.open .mnav-foot{animation:mnin .45s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--d,0) * 35ms + 60ms)}
+@keyframes mnin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.mnav,.mnav.open .mnav-body > *,.mnav.open .mnav-foot{transition:none;animation:none}}
+
+/* ---------- round 8: no eyebrows (small labels above headings) anywhere on the site ---------- */
+.eyb,.pg-story-tx small,.pf-tx small,.pg-tile-tx small,.mnav-lbl{display:none!important}
+.mnav-brands{margin-top:16px}
+
 </style>
 
 <!--
@@ -1271,7 +1401,7 @@ main{padding-block:0 64px}
       "balloonMax": 40,
       "provider": "Major South African banks",
       "disclaimer": "Monthly payments are estimates for illustration only and do not constitute a quotation as defined in the National Credit Act. Final terms depend on your credit profile and the finance house's approval. Interest rate shown is indicative and linked to prime.",
-      "confirmed": false
+      "confirmed": true
     },
     "salesperson": {
       "name": "Zhai Auto sales team",
@@ -1419,20 +1549,6 @@ main{padding-block:0 64px}
       ]
     },
     "banners": [
-      {
-        "before": "peugeot",
-        "layout": "split",
-        "image": "site/bnr-peugeot-2008",
-        "image2": "site/bnr-peugeot-lion",
-        "focus": "62% 60%",
-        "tint": "#ffffff",
-        "kicker": "Peugeot 2008",
-        "title": "The new Peugeot 2008",
-        "text": "Shades of winter: from R499 900* with R20 000 retail assistance.",
-        "cta": "See the 2008 offer",
-        "vehicle": "special-peugeot-2008",
-        "cta2": "Book a test drive"
-      },
       {
         "before": "opel",
         "layout": "video",
@@ -1763,7 +1879,8 @@ main{padding-block:0 64px}
         "special-peugeot-landtrek-sc",
         "special-peugeot-landtrek-dc",
         "special-peugeot-2008"
-      ]
+      ],
+      "layout": "promo"
     },
     {
       "id": "peugeot",
@@ -1863,7 +1980,20 @@ main{padding-block:0 64px}
         "cars/opel-grandland-gs-2"
       ],
       "monthlyFixed": 9828,
-      "monthlyNote": "Dealer finance offer. Ts and Cs apply. Visuals for illustration purposes only; options and specifications may vary by model."
+      "monthlyNote": "Dealer finance offer. Ts and Cs apply. Visuals for illustration purposes only; options and specifications may vary by model.",
+      "promo": {
+        "style": "full",
+        "image": "site/bnr-opel",
+        "focus": "58% 58%",
+        "focusMobile": "72% 60%",
+        "kicker": "Opel",
+        "title": "The new Opel Grandland",
+        "sub": "1.2T Edition automatic",
+        "headline": "R9 828 pm*",
+        "note": "R739 900 retail",
+        "text": "Bold new design, inside and out. Now in George.",
+        "terms": "*Dealer finance offer. Ts and Cs apply. Visuals for illustration only."
+      }
     },
     {
       "id": "special-opel-corsa-irmscher",
@@ -1885,7 +2015,21 @@ main{padding-block:0 64px}
         "cars/opel-corsa-irmscher-2"
       ],
       "monthlyFixed": 7600,
-      "monthlyNote": "R534 900 retail. 48 months, 0% deposit, 62% balloon. Ts and Cs apply."
+      "monthlyNote": "R534 900 retail. 48 months, 0% deposit, 62% balloon. Ts and Cs apply.",
+      "promo": {
+        "style": "studio",
+        "image": "cars/opel-corsa-irmscher-1",
+        "focus": "50% 50%",
+        "tint": "#e9e7e2",
+        "watermark": "Irmscher",
+        "kicker": "Opel",
+        "title": "Opel Corsa Irmscher",
+        "sub": "Irmscher Edition automatic",
+        "headline": "R7 600 pm*",
+        "note": "R534 900 retail",
+        "text": "48 months, 0% deposit and a 62% balloon.",
+        "terms": "*Dealer finance offer. Ts and Cs apply."
+      }
     },
     {
       "id": "special-citroen-aircross-max",
@@ -1905,7 +2049,21 @@ main{padding-block:0 64px}
         "cars/citroen-aircross-max-0",
         "cars/citroen-aircross-max-1",
         "cars/citroen-aircross-max-2"
-      ]
+      ],
+      "promo": {
+        "style": "split",
+        "image": "site/scene-aircross",
+        "focus": "40% 62%",
+        "focusMobile": "38% 66%",
+        "tint": "#f4efe9",
+        "kicker": "Citroën",
+        "title": "Citroën C3 Aircross Max",
+        "sub": "Max automatic",
+        "headline": "R329 900",
+        "note": "Special price",
+        "text": "6 airbags, a 10.5-inch screen and wireless Apple CarPlay.",
+        "terms": "Ts and Cs apply. While stocks last."
+      }
     },
     {
       "id": "special-citroen-c3-max",
@@ -1925,7 +2083,21 @@ main{padding-block:0 64px}
         "cars/citroen-c3-max-mt-0",
         "cars/citroen-c3-max-mt-1",
         "cars/citroen-c3-max-mt-2"
-      ]
+      ],
+      "promo": {
+        "style": "split-rev",
+        "image": "site/bnr-citroen-c3",
+        "focus": "56% 45%",
+        "focusMobile": "58% 45%",
+        "tint": "#f6efe6",
+        "kicker": "Citroën",
+        "title": "Citroën C3 Max",
+        "sub": "Max crossover",
+        "headline": "R229 900",
+        "note": "Special price",
+        "text": "6 airbags and a reverse camera with sensors.",
+        "terms": "Ts and Cs apply. While stocks last."
+      }
     },
     {
       "id": "special-peugeot-landtrek-sc",
@@ -1945,7 +2117,21 @@ main{padding-block:0 64px}
         "cars/peugeot-landtrek-pro-sc-0",
         "cars/peugeot-landtrek-pro-sc-1",
         "cars/peugeot-landtrek-pro-sc-2"
-      ]
+      ],
+      "promo": {
+        "style": "full",
+        "image": "site/scene-landtrek-oem",
+        "focus": "50% 70%",
+        "focusMobile": "72% 70%",
+        "badge": "R50 000 retail assistance",
+        "kicker": "Peugeot",
+        "title": "Peugeot Landtrek",
+        "sub": "Professional single cab diesel",
+        "headline": "R338 900",
+        "note": "Retail assistance included",
+        "text": "A hard-working single cab bakkie, ready for the job.",
+        "terms": "Retail assistance included in the price shown. Ts and Cs apply."
+      }
     },
     {
       "id": "special-peugeot-landtrek-dc",
@@ -1965,7 +2151,22 @@ main{padding-block:0 64px}
         "cars/peugeot-landtrek-pro-dc-0",
         "cars/peugeot-landtrek-pro-dc-1",
         "cars/peugeot-landtrek-pro-dc-2"
-      ]
+      ],
+      "promo": {
+        "style": "split-rev",
+        "image": "site/scene-landtrek",
+        "focus": "62% 55%",
+        "focusMobile": "64% 58%",
+        "tint": "#eef0f2",
+        "badge": "R50 000 retail assistance",
+        "kicker": "Peugeot",
+        "title": "Peugeot Landtrek",
+        "sub": "Professional double cab 4x2 diesel",
+        "headline": "R404 900",
+        "note": "Retail assistance included",
+        "text": "Room for the crew, and the load.",
+        "terms": "Retail assistance included in the price shown. Ts and Cs apply."
+      }
     },
     {
       "id": "special-peugeot-2008",
@@ -1985,7 +2186,22 @@ main{padding-block:0 64px}
         "cars/peugeot-2008-gt-0",
         "cars/peugeot-2008-gt-1",
         "cars/peugeot-2008-gt-2"
-      ]
+      ],
+      "promo": {
+        "style": "split",
+        "image": "site/banner-peugeot-2008",
+        "focus": "42% 60%",
+        "focusMobile": "40% 62%",
+        "tint": "#f1eef6",
+        "badge": "R20 000 retail assistance",
+        "kicker": "Peugeot",
+        "title": "Peugeot 2008",
+        "sub": "Shades of winter edition",
+        "headline": "R499 900",
+        "note": "Retail assistance included",
+        "text": "The striking compact SUV, now with R20 000 retail assistance.",
+        "terms": "Retail assistance included in the price shown. Ts and Cs apply."
+      }
     },
     {
       "id": "peugeot-landtrek-pro-sc",
@@ -2839,6 +3055,67 @@ const mapFrame = t => MAPSRC ? `<iframe src="${esc(MAPSRC)}" loading="lazy" refe
 
 if (PG.headerCta) { const b = $('#head-cta'); b.hidden = false; b.textContent = PG.headerCta; b.onclick = () => openFormDrawer(PG.headerForm || 'viewing', null); }
 
+/* mobile menu (round 7): hamburger opens a full-screen menu with the key sections */
+(function mobileMenu(){
+  const bar = $('.site-head .in'); if (!bar) return;
+  const btn = document.createElement('button');
+  btn.className = 'menu-btn'; btn.type = 'button'; btn.setAttribute('aria-label', 'Open menu'); btn.setAttribute('aria-expanded', 'false'); btn.setAttribute('aria-controls', 'mnav');
+  btn.innerHTML = '<span></span><span></span><span></span>';
+  bar.appendChild(btn);
+  const chev = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5l7 7-7 7"/></svg>';
+  const logos = {}; ((PG.brands || {}).items || []).forEach(x => { if (x && x.href) logos[x.href.replace('#', '')] = x; });
+  const promos = DATA.sections.filter(x => x.layout === 'promo' || !logos[x.id]);
+  const brandSecs = DATA.sections.filter(x => logos[x.id] && x.layout !== 'promo');
+  const secHrefs = new Set(DATA.sections.map(x => '#' + x.id).concat(['#brands']));
+  const rest = (PG.menu || []).filter(m => !secHrefs.has(m[1]));
+  let d = 0;
+  const big = (label, href, badge) => `<a class="mnav-big" href="${esc(href)}" style="--d:${d++}"><span>${esc(label)}</span>${badge ? `<em>${esc(badge)}</em>` : chev}</a>`;
+  const panel = document.createElement('div');
+  panel.className = 'mnav'; panel.id = 'mnav'; panel.hidden = true;
+  panel.setAttribute('role', 'dialog'); panel.setAttribute('aria-modal', 'true'); panel.setAttribute('aria-label', 'Menu');
+  panel.innerHTML = `<div class="mnav-top"><span class="mnav-logo"></span><button class="mnav-x" type="button" aria-label="Close menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <nav class="mnav-body" aria-label="Menu">
+      ${promos.map(x => big(x.label || x.title, '#' + x.id, x.vehicles.length ? x.vehicles.length + (x.layout === 'promo' ? ' offers' : '') : '')).join('')}
+      ${brandSecs.length ? `<p class="mnav-lbl" style="--d:${d++}">Our brands</p><div class="mnav-brands" style="--d:${d++}">${brandSecs.map(x => { const b = logos[x.id], n = x.vehicles.length;
+        return `<a href="#${esc(x.id)}">${b.logo ? `<img src="${IMG(b.logo)}" alt="" loading="lazy">` : ''}<span><b>${esc(x.label || b.name)}</b><small>${n} model${n === 1 ? '' : 's'}</small></span></a>`; }).join('')}</div>` : ''}
+      ${rest.map(m => big(m[0], m[1])).join('')}
+    </nav>
+    <div class="mnav-foot" style="--d:${d++}">
+      ${PG.headerCta ? `<button class="pg-btn pri" type="button" data-mform="${esc(PG.headerForm || 'testdrive')}">${esc(PG.headerCta)}</button>` : ''}
+      <div class="mnav-row">${D.phone ? `<a class="pg-btn" href="tel:${esc(String(D.phone).replace(/[^\d+]/g, ''))}">Call us</a>` : ''}${D.whatsapp ? `<a class="pg-btn" href="${waLink()}" target="_blank" rel="noopener">${ic.wa}WhatsApp</a>` : ''}</div>
+      ${D.address ? `<p>${esc(D.address)}</p>` : ''}
+    </div>`;
+  document.body.appendChild(panel);
+  const html = document.documentElement;
+  let lastFocus = null;
+  const open = () => {
+    const lg = $('#brand'); const slot = $('.mnav-logo', panel); if (lg && !slot.firstChild) { const c = lg.cloneNode(true); c.removeAttribute('id'); c.addEventListener('click', e => { e.preventDefault(); close(); scrollTo({top:0, behavior: reduce ? 'auto' : 'smooth'}); }); slot.appendChild(c); }
+    lastFocus = document.activeElement; panel.hidden = false; html.style.overflow = 'hidden';
+    btn.setAttribute('aria-expanded', 'true'); requestAnimationFrame(() => { panel.classList.add('open'); $('.mnav-x', panel).focus(); });
+  };
+  const close = (keepFocus) => {
+    if (panel.hidden) return;
+    panel.classList.remove('open'); html.style.overflow = ''; btn.setAttribute('aria-expanded', 'false');
+    setTimeout(() => { panel.hidden = true; }, reduce ? 0 : 260);
+    if (!keepFocus && lastFocus) lastFocus.focus({preventScroll:true});
+  };
+  btn.addEventListener('click', open);
+  $('.mnav-x', panel).addEventListener('click', () => close());
+  panel.addEventListener('keydown', e => {
+    if (e.key === 'Escape') close();
+    if (e.key === 'Tab') { const f = $$('a,button', panel).filter(x => x.offsetParent); if (!f.length) return; const a = f[0], z = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === a) { e.preventDefault(); z.focus(); } else if (!e.shiftKey && document.activeElement === z) { e.preventDefault(); a.focus(); } }
+  });
+  panel.addEventListener('click', e => {
+    const a = e.target.closest('a[href^="#"]');
+    if (a) { e.preventDefault(); const t = $(a.getAttribute('href')); close(true);
+      if (t) requestAnimationFrame(() => { const head = $('.site-head'); const y = t.getBoundingClientRect().top + scrollY - (head ? head.offsetHeight : 64) + 1; scrollTo({top: Math.max(0, y), behavior: reduce ? 'auto' : 'smooth'}); }); return; }
+    const f = e.target.closest('[data-mform]');
+    if (f) { close(true); cur = null; openFormDrawer(f.dataset.mform, null); }
+  });
+  matchMedia('(min-width:721px)').addEventListener('change', e => { if (e.matches) close(true); });
+})();
+
 /* hero */
 const SCENES = ((PG.hero || {}).scenes || []).filter(s => s && s.image);
 if (SCENES.length) {
@@ -3017,6 +3294,28 @@ function wireStory(){
   let cur = -1;
   const show = i => { if (i === cur) return; cur = i; tx.forEach((t, j) => { t.classList.toggle('on', j === i); t.setAttribute('aria-hidden', j !== i); }); dots.forEach((d, j) => d.classList.toggle('on', j === i)); loadNext(i + 1); };
   if (n < 2) return;
+  if (PHONE.matches && !reduce) {   // phones (round 7): a swipe slider that moves on by itself, instead of the pinned scroll
+    sec.classList.add('swipe'); sec.style.height = '';
+    const T = 6000; sec.style.setProperty('--sc-t', T + 'ms');
+    let k = 0, timer = null, hold = false, seen = true, x0 = null, y0 = 0;
+    const tick = () => { clearTimeout(timer); if (!hold && seen) timer = setTimeout(() => go(k + 1), T); };
+    const go = j => { k = (j + n) % n;
+      sc.forEach((s, m) => { s.style.opacity = m === k ? 1 : 0; s.classList.toggle('on', m === k); });
+      tx.forEach((t, m) => { t.style.opacity = m === k ? 1 : 0; t.style.transform = m === k ? 'none' : 'translateY(14px)'; });
+      loadNext(k); show(k);
+      dots.forEach((d, m) => { d.classList.remove('on'); if (m === k) { void d.offsetWidth; d.classList.add('on'); } });
+      tick(); };
+    const pin = $('.pg-story-pin', sec);
+    pin.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; hold = true; clearTimeout(timer); sec.classList.add('paused'); }, {passive:true});
+    pin.addEventListener('touchend', e => { hold = false; sec.classList.remove('paused'); if (x0 == null) return tick();
+      const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0; x0 = null;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.2) go(k + (dx < 0 ? 1 : -1)); else tick(); }, {passive:true});
+    pin.addEventListener('touchcancel', () => { hold = false; x0 = null; sec.classList.remove('paused'); tick(); }, {passive:true});
+    dots.forEach((d, j) => d.addEventListener('click', () => go(j)));
+    new IntersectionObserver(es => es.forEach(e => { seen = e.isIntersecting; if (seen) tick(); else clearTimeout(timer); }), {threshold:.4}).observe(sec);
+    document.addEventListener('visibilitychange', () => { if (document.hidden) clearTimeout(timer); else tick(); });
+    go(0); return;
+  }
   if (reduce) {
     sec.classList.add('static'); sec.style.height = '';
     const go = i => { sc.forEach((s, j) => { s.style.opacity = j === i ? 1 : 0; }); tx.forEach((t, j) => { t.style.opacity = j === i ? 1 : 0; }); loadNext(i); show(i); };
@@ -3121,7 +3420,7 @@ function wireSvcTiles(){
   new IntersectionObserver(es => es.forEach(e => g.classList.toggle('in', e.isIntersecting)), {rootMargin:'100px 0px'}).observe(g);
 }
 function wirePage(){
-  wireSvcTiles(); wireRailFit(); wireStory(); wireBannerVideos(); wireLineup(); wireMode();
+  wireSvcTiles(); wireRailFit(); wireStory(); wirePromos(); wireBannerVideos(); wireLineup(); wireMode();
   $$('[data-pgform]').forEach(b => { if (b.closest('#drawer')) return; b.addEventListener('click', () => { cur = null; openFormDrawer(b.dataset.pgform, null); }); });
   $$('[data-spot]').forEach(b => { if (b.closest('#drawer')) return; b.addEventListener('click', () => openVehicle(b.dataset.spot, false, 'sheet')); });
   $$('#pg-bottom form').forEach(wireForm);
@@ -3187,12 +3486,86 @@ function cardHTML(v, cta, style){
 }
 const cols3 = v => monthlyOf(v) != null && v.condition !== 'new';
 
+
+/* ---------- offer banners (round 7): a section with layout "promo" shows its cars as a slider of large banners ---------- */
+function promoOf(v){
+  const p = v.promo || {}, m = monthlyOf(v), fixed = v.priceMode === 'fixed' && m != null;
+  const style = p.style || (p.image ? 'full' : 'studio');
+  return {style, image: p.image || v.images[0], kind: p.image ? 'site' : 'card', focus: p.focus || '50% 50%', focusMobile: p.focusMobile || p.focus || '50% 50%',
+    tint: p.tint || '', watermark: p.watermark || '', kicker: p.kicker || '', badge: p.badge || '', title: p.title || v.title,
+    sub: p.sub != null ? p.sub : v.sub,
+    headline: p.headline || (fixed ? R(m) + ' pm*' : isPOA(v) ? 'On request' : R(v.price)),
+    note: p.note != null ? p.note : (fixed ? R(v.price) + ' retail' : ''),
+    text: p.text != null ? p.text : (v.extra || ''), terms: p.terms || 'Ts and Cs apply.'};
+}
+function promoSlide(v, i, n, s){
+  const p = promoOf(v);
+  const st = `--f:${esc(p.focus)};--fm:${esc(p.focusMobile)}${p.tint ? ';--tint:' + esc(p.tint) : ''}`;
+  return `<article class="pr-s ${esc(p.style)}${i ? '' : ' on'}" style="${st}" data-id="${esc(v.id)}" role="group" aria-roledescription="slide" aria-label="${i + 1} of ${n}: ${esc(p.title + ' ' + p.sub)}" ${i ? 'aria-hidden="true" inert' : ''}>
+    <div class="pr-media">${p.watermark ? `<span class="pr-wm" aria-hidden="true">${esc(p.watermark)}</span>` : ''}${LZ(p.image, p.kind, `alt="${esc(p.title + ' ' + p.sub)}" draggable="false"`)}</div>
+    <div class="pr-tx">
+      ${p.badge ? `<span class="pr-badge">${esc(p.badge)}</span>` : ''}${p.kicker ? `<span class="eyb"><i aria-hidden="true"></i><span>${esc(p.kicker)}</span></span>` : ''}
+      <h3>${esc(p.title)}</h3>${p.sub ? `<p class="pr-sub">${esc(p.sub)}</p>` : ''}
+      <p class="pr-fig"><b class="num">${esc(p.headline)}</b>${p.note ? `<small>${esc(p.note)}</small>` : ''}</p>
+      ${p.text ? `<p class="pr-txt">${esc(p.text)}</p>` : ''}
+      <div class="pr-acts"><button class="pg-btn pri" type="button" data-spot="${esc(v.id)}">${esc(s.cta || 'View offer')}</button><button class="pg-btn" type="button" data-enq="${esc(v.id)}">Enquire</button></div>
+      ${p.terms ? `<p class="pr-terms">${esc(p.terms)}</p>` : ''}
+    </div>
+  </article>`;
+}
+function promoHTML(s, si, list){
+  const n = list.length, pad = x => String(x).padStart(2, '0');
+  return `<section class="stock is-promo" id="${s.id}" data-detail="${esc(s.detailStyle || POP.detailStyle)}" aria-labelledby="h-${s.id}">
+    <div class="stock-head">
+      <div class="sh-l"><span class="eyb"><i aria-hidden="true"></i><b class="num">${pad(si + 1)}</b>${s.kicker ? `<span>${esc(s.kicker)}</span>` : ''}</span><h2 id="h-${s.id}">${esc(s.title)}</h2>${s.intro ? `<p>${esc(s.intro)}</p>` : ''}</div>
+      <div class="sh-r"><span class="count">${n} offer${n === 1 ? '' : 's'}</span>${n > 1 ? `<div class="rail-ctl"><button class="rail-btn" data-pr="-1" aria-label="Previous offer">${ic.l}</button><button class="rail-btn" data-pr="1" aria-label="Next offer">${ic.r}</button></div>` : ''}</div>
+    </div>
+    <div class="pr" role="region" aria-roledescription="carousel" aria-label="${esc(s.title)}">
+      <div class="pr-track" tabindex="0" aria-live="off">${list.map((v, i) => promoSlide(v, i, n, s)).join('')}</div>
+      ${n > 1 ? `<div class="pr-foot"><div class="pr-dots">${list.map((v, i) => `<button type="button" class="${i ? '' : 'on'}" aria-label="Offer ${i + 1}: ${esc(promoOf(v).title)}"${i ? '' : ' aria-current="true"'}><i></i></button>`).join('')}</div><span class="pr-num num" aria-hidden="true"><b>01</b> / ${pad(n)}</span></div>` : ''}
+    </div>
+  </section>`;
+}
+function wirePromos(){
+  $$('.pr').forEach(box => {
+    const tr = $('.pr-track', box), sl = [...tr.children], dots = $$('.pr-dots button', box), num = $('.pr-num b', box), sec = box.closest('.stock'), n = sl.length, T = 6500;
+    $$('[data-enq]', box).forEach(b => b.addEventListener('click', () => { const v = V[b.dataset.enq]; if (v) { cur = v; openFormDrawer('enquire', v); } }));
+    if (n < 2) { sl.forEach(x => x.classList.add('on')); new IntersectionObserver((es, o) => es.forEach(e => { if (e.isIntersecting) { lzAll(box); o.disconnect(); } }), {rootMargin:'100% 0px'}).observe(box); return; }
+    box.style.setProperty('--pr-t', T + 'ms');
+    if (reduce) box.classList.add('still');
+    let i = 0, timer = null, seen = false, hold = false, settle = 0;
+    const x0 = () => sl[0].offsetLeft;
+    const nearest = () => { let b = 0, bd = Infinity; sl.forEach((x, j) => { const dd = Math.abs(x.offsetLeft - x0() - tr.scrollLeft); if (dd < bd) { bd = dd; b = j; } }); return b; };
+    const mark = (k, restart) => {
+      if (k === i && !restart) return; i = k;
+      sl.forEach((x, j) => { const on = j === i; x.classList.toggle('on', on); if (on) { x.removeAttribute('aria-hidden'); x.inert = false; } else { x.setAttribute('aria-hidden', 'true'); x.inert = true; } });
+      dots.forEach((d, j) => { d.classList.remove('on'); d.classList.toggle('done', j < i); if (j === i) { void d.offsetWidth; d.classList.add('on'); d.setAttribute('aria-current', 'true'); } else d.removeAttribute('aria-current'); });
+      if (num) num.textContent = String(i + 1).padStart(2, '0');
+    };
+    const tick = () => { clearTimeout(timer); if (!reduce && seen && !hold) timer = setTimeout(() => go(i + 1), T); };
+    const go = k => { k = (k + n) % n; tr.scrollTo({left: sl[k].offsetLeft - x0(), behavior: reduce ? 'auto' : 'smooth'}); mark(k, true); tick(); };
+    tr.addEventListener('scroll', () => { clearTimeout(settle); settle = setTimeout(() => { const k = nearest(); if (k !== i) { mark(k); tick(); } }, 90); }, {passive:true});
+    $$('[data-pr]', sec).forEach(b => b.addEventListener('click', () => go(i + +b.dataset.pr)));
+    dots.forEach((d, j) => d.addEventListener('click', () => go(j)));
+    tr.addEventListener('keydown', e => { if (e.target !== tr) return; if (e.key === 'ArrowRight') { e.preventDefault(); go(i + 1); } if (e.key === 'ArrowLeft') { e.preventDefault(); go(i - 1); } });
+    const pause = () => { hold = true; clearTimeout(timer); box.classList.add('paused'); };
+    const resume = () => { hold = false; box.classList.remove('paused'); mark(i, true); tick(); };
+    if (matchMedia('(hover:hover)').matches) { box.addEventListener('mouseenter', pause); box.addEventListener('mouseleave', resume); }
+    box.addEventListener('focusin', pause); box.addEventListener('focusout', e => { if (!box.contains(e.relatedTarget)) resume(); });
+    tr.addEventListener('touchstart', pause, {passive:true}); tr.addEventListener('touchend', () => setTimeout(resume, 400), {passive:true});
+    document.addEventListener('visibilitychange', () => { if (document.hidden) clearTimeout(timer); else tick(); });
+    new IntersectionObserver(es => es.forEach(e => { seen = e.isIntersecting; if (seen) { lzAll(box); mark(i, true); tick(); } else clearTimeout(timer); }), {threshold:.35}).observe(box);
+    new IntersectionObserver((es, o) => es.forEach(e => { if (e.isIntersecting) { lzAll(box); o.disconnect(); } }), {rootMargin:'100% 0px'}).observe(box);
+  });
+}
+
 /* ---------- sections ---------- */
 $('#sections').innerHTML = DATA.sections.map((s, si) => {
   const list = s.vehicles.map(id => V[id]).filter(Boolean);
   const bnrs = PG.banners ? PG.banners.filter(b => b.before === s.id) : [];
   const feat = s.layout === 'feature' && list.length ? (bnrs.find(b => b.layout === 'feature') || {}) : null;
   const bnr = bnrs.map(bannerHTML).join('');
+  if (s.layout === 'promo' && list.length) return bnr + promoHTML(s, si, list);
   const anyExtra = list.some(v => v.extra);
   return bnr + `<section class="stock ${s.detailStyle ? 'variant' : ''}${feat ? ' is-feature' : ''}" id="${s.id}" data-detail="${esc(s.detailStyle || POP.detailStyle)}" aria-labelledby="h-${s.id}">
     <div class="stock-head">

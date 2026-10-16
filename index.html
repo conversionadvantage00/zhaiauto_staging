@@ -1201,6 +1201,20 @@ main{padding-block:0 64px}
   .pp-fig b{font-size:clamp(52px,15vw,72px)}
 }
 @media (prefers-reduced-motion:reduce){.pp-row::before,.pg-pact.rv .pp-row{transition:none}.pg-pact.rv .pp-row{opacity:1;transform:none}}
+/* round 9b: promises on phones - solid numbers in cards, no hover fill */
+@media (max-width:900px){
+  .pp-list{border-top:0;gap:12px}
+  .pp-row{display:block;padding:20px;background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+  .pp-row::before{display:none}
+  .pp-row:active{transform:scale(.985)}
+  .pp-fig{display:flex;align-items:center;gap:14px}
+  .pp-fig b,.pg-pact.in .pp-row:first-child .pp-fig b{flex:none;display:block;text-align:center;white-space:nowrap;min-width:92px;height:76px;line-height:76px!important;padding:0 14px;border-radius:14px;background:color-mix(in srgb,var(--accent) 10%,var(--surface));color:var(--accent);-webkit-text-stroke:0;font-size:40px;line-height:1;letter-spacing:-.02em}
+  .pp-fig small{margin:0;font-size:11.5px;max-width:18ch}
+  .pp-tx{margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+  .pp-tx i{display:inline-flex;align-items:center;gap:6px;color:var(--accent)}
+  .pp-tx i::after{content:"\2192";font-size:15px}
+  .pp-go{display:none}
+}
 /* ---------- round 8: no eyebrows (small labels above headings) anywhere on the site ---------- */
 .eyb,.pg-story-tx small,.pf-tx small,.pg-tile-tx small,.mnav-lbl{display:none!important}
 .mnav-brands{margin-top:16px}

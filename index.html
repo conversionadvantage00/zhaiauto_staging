@@ -1216,6 +1216,21 @@ main{padding-block:0 64px}
   .pp-tx i::after{content:"\2192";font-size:15px}
   .pp-go{display:none}
 }
+/* round 9d: menu button and menu brands without outlines */
+.menu-btn,.mnav-x{border:0;border-radius:0;width:40px;height:40px}
+.menu-btn span{left:9px;right:9px}
+.menu-btn span:nth-child(3){right:16px}
+.mnav-brands{gap:2px 16px}
+.mnav-brands a{background:none;border:0;border-radius:0;padding:12px 0;min-height:0}
+.mnav-brands a:active{opacity:.6}
+/* round 9d: drawer moves with intent - slower glide, content arrives after the panel, push between panels */
+.drawer{transition:transform .55s cubic-bezier(.32,.72,0,1)}
+.scrim{transition:opacity .45s ease}
+.dr-head{gap:8px}
+.dr-back{flex:none;width:40px;height:40px;margin-left:-10px;border:0;background:none;color:var(--ink);display:grid;place-items:center;cursor:pointer;padding:0}
+.dr-back[hidden]{display:none}
+.dr-back svg{width:20px;height:20px}
+.dr-head h3{flex:1;min-width:0}
 /* ---------- round 8: no eyebrows (small labels above headings) anywhere on the site ---------- */
 .eyb,.pg-story-tx small,.pf-tx small,.pg-tile-tx small,.mnav-lbl{display:none!important}
 .mnav-brands{margin-top:16px}
@@ -2848,7 +2863,7 @@ main{padding-block:0 64px}
 
 <!-- drawer -->
 <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="dr-title" hidden="">
-  <div class="dr-head"><h3 id="dr-title"></h3><button class="x-btn" id="dr-close" aria-label="Close panel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></div>
+  <div class="dr-head"><button class="dr-back" id="dr-back" aria-label="Back" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 6l-6 6 6 6"/></svg></button><h3 id="dr-title"></h3><button class="x-btn" id="dr-close" aria-label="Close panel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></div>
   <div class="dr-tabs" id="dr-tabs" role="tablist"></div>
   <div class="dr-body" id="dr-body"></div>
 </aside>
@@ -4300,17 +4315,43 @@ function closeInline(sec){
 }
 
 /* ---------- drawers ---------- */
-function openDrawer(title, tabs, idx){
+/* round 9d: the drawer glides in, then its content arrives; moving from an info panel to a form pushes
+   the new panel in from the right (Back slides it out again) instead of swapping in place */
+let drHist = [], drCur = null, drBusy = 0;
+const drStill = () => matchMedia('(prefers-reduced-motion: reduce)').matches || !Element.prototype.animate;
+const drParts = () => [$('#drawer .dr-head h3'), $('#dr-tabs'), $('#dr-body')].filter(x => x && !x.hidden);
+function drRender(title, tabs, idx){
   $('#dr-title').textContent = title;
   const tb = $('#dr-tabs');
   tb.innerHTML = tabs.length > 1 ? tabs.map((t,i) => `<button role="tab" aria-selected="${i===idx}" data-t="${i}">${esc(t.label)}</button>`).join('') : '';
   tb.hidden = tabs.length < 2;
-  const show = i => { $$('button', tb).forEach(b => b.setAttribute('aria-selected', +b.dataset.t === i)); $('#dr-body').innerHTML = tabs[i].html; $('#dr-body').scrollTop = 0; tabs[i].after && tabs[i].after(); };
-  $$('button', tb).forEach(b => b.onclick = () => show(+b.dataset.t));
+  const show = i => { drCur && (drCur.idx = i); $$('button', tb).forEach(b => b.setAttribute('aria-selected', +b.dataset.t === i)); $('#dr-body').innerHTML = tabs[i].html; $('#dr-body').scrollTop = 0; tabs[i].after && tabs[i].after(); };
+  $$('button', tb).forEach(b => b.onclick = () => { if (drStill()) return show(+b.dataset.t); const bd = $('#dr-body');
+    bd.animate([{opacity:1}, {opacity:0}], {duration:120, easing:'ease-in'}).onfinish = () => { show(+b.dataset.t); bd.animate([{opacity:0, transform:'translateY(10px)'}, {opacity:1, transform:'none'}], {duration:300, easing:'cubic-bezier(.2,.8,.2,1)'}); }; });
   show(idx);
-  if (!$('#drawer').classList.contains('on')) openLayer('#drawer');
+  $('#dr-back').hidden = !drHist.length;
 }
-function closeDrawer(){ closeLayer('#drawer'); }
+function drArrive(delay){ if (drStill()) return; drParts().forEach((el, i) => el.animate([{opacity:0, transform:'translateX(28px)'}, {opacity:1, transform:'none'}], {duration:460, delay:delay + i * 60, easing:'cubic-bezier(.2,.8,.2,1)', fill:'backwards'})); }
+function drSwap(dir, render){
+  if (drStill()) { render(); return; }
+  const id = ++drBusy, out = dir > 0 ? '-32px' : '32px', inn = dir > 0 ? '40px' : '-40px';
+  const parts = drParts(); let left = parts.length;
+  const next = () => { if (id !== drBusy) return; render(); $('#dr-body').scrollTop = 0;
+    drParts().forEach((el, i) => el.animate([{opacity:0, transform:`translateX(${inn})`}, {opacity:1, transform:'none'}], {duration:420, delay:i * 50, easing:'cubic-bezier(.2,.8,.2,1)', fill:'backwards'})); };
+  if (!left) return next();
+  parts.forEach(el => el.animate([{opacity:1, transform:'none'}, {opacity:0, transform:`translateX(${out})`}], {duration:200, easing:'cubic-bezier(.4,0,1,1)', fill:'forwards'}).onfinish = function(){ this.cancel(); if (--left === 0) next(); });
+}
+function openDrawer(title, tabs, idx){
+  const dr = $('#drawer'), isOpen = dr.classList.contains('on');
+  if (isOpen && drCur) { drHist.push(drCur); drCur = {title, tabs, idx}; drSwap(1, () => drRender(title, tabs, idx)); return; }
+  drHist = []; drCur = {title, tabs, idx}; drRender(title, tabs, idx);
+  openLayer('#drawer'); drArrive(170);
+}
+$('#dr-back').onclick = () => { const p = drHist.pop(); if (!p) return; drCur = p; drSwap(-1, () => drRender(p.title, p.tabs, p.idx)); };
+function closeDrawer(){
+  if (!drStill()) drParts().forEach(el => el.animate([{opacity:1}, {opacity:0, transform:'translateX(16px)'}], {duration:220, easing:'ease-in', fill:'forwards'}).onfinish = function(){ const a = this; setTimeout(() => a.cancel(), 500); });
+  closeLayer('#drawer'); drHist = []; drCur = null;
+}
 $('#dr-close').onclick = closeDrawer;
 
 function openPacks(v, m, i){

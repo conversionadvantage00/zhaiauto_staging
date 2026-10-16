@@ -1152,6 +1152,55 @@ main{padding-block:0 64px}
 @keyframes mnin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.mnav,.mnav.open .mnav-body > *,.mnav.open .mnav-foot{transition:none;animation:none}}
 
+/* ---------- round 9 (16 Oct 2026) ---------- */
+/* brand tiles: logo only, tighter on phones */
+.pg-brand{gap:0;height:128px}
+.pg-brand img{height:64px;max-width:160px}
+@media (max-width:720px){
+  .pg-brands{padding-block:40px 6px}
+  .pg-brands .pg-head{margin-bottom:18px}
+  .pg-marq{margin-top:0;padding-block:6px 10px}
+  .pg-brand{width:128px;height:92px;margin-right:10px}
+  .pg-brand img{height:44px;max-width:96px}
+}
+/* split banners: facts row (Jeep) */
+.ps-stats{display:flex;flex-wrap:wrap;gap:12px 28px;margin:6px 0 4px;padding:16px 0 0;border-top:1px solid color-mix(in srgb,var(--ink) 14%,transparent)}
+.ps-stats div{min-width:0}
+.ps-stats dt{font-family:var(--display);font-weight:700;font-size:clamp(20px,1.8vw,26px);line-height:1.05;letter-spacing:-.01em;color:var(--ink)}
+.ps-stats dd{margin:4px 0 0;font-size:13px;color:var(--muted)}
+/* offer banners on phones: text spans the card with even padding (the "full" look was pushed to one edge) */
+@media (max-width:767px){.pr-s .pr-tx,.pr-s.full .pr-tx,.pr-s.split .pr-tx,.pr-s.split-rev .pr-tx,.pr-s.studio .pr-tx{align-self:stretch;padding:22px 22px 24px}}
+/* ownership promises: heading beside an animated list of commitments */
+.pg-pact{margin:clamp(28px,4vw,56px) var(--gutter) 0;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.5fr);gap:clamp(24px,5vw,80px);align-items:start;border-top:1px solid var(--line);padding-top:clamp(28px,4vw,48px)}
+.pp-head{position:sticky;top:96px}
+.pp-head h3{margin:0;font-family:var(--display);font-stretch:112%;font-weight:700;font-size:clamp(28px,3.2vw,44px);line-height:1.02;letter-spacing:-.02em;text-wrap:balance}
+.pp-head p{margin:12px 0 0;color:var(--muted);max-width:34ch;font-size:16px;line-height:1.55}
+.pp-list{display:grid;border-top:1px solid var(--line)}
+.pp-row{all:unset;box-sizing:border-box;cursor:pointer;position:relative;isolation:isolate;display:grid;grid-template-columns:minmax(150px,.7fr) minmax(0,1.4fr) auto;gap:clamp(16px,3vw,40px);align-items:center;padding:clamp(22px,2.6vw,34px) clamp(8px,1.4vw,20px);border-bottom:1px solid var(--line);overflow:hidden}
+.pp-row::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,color-mix(in srgb,var(--accent) 12%,var(--surface)),var(--surface));transform:scaleX(0);transform-origin:0 50%;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.pp-row:hover::before,.pp-row:focus-visible::before{transform:none}
+.pp-row:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.pp-fig b{display:block;font-family:var(--display);font-stretch:125%;font-weight:800;font-size:clamp(54px,6.2vw,96px);line-height:.88;letter-spacing:-.03em;color:transparent;-webkit-text-stroke:1.5px var(--ink);transition:color .45s}
+.pp-row:hover .pp-fig b,.pp-row:focus-visible .pp-fig b,.pg-pact.in .pp-row:first-child .pp-fig b{color:var(--accent);-webkit-text-stroke-color:var(--accent)}
+.pp-fig small{display:block;margin-top:10px;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);max-width:22ch;line-height:1.4}
+.pp-tx{display:grid;gap:6px}
+.pp-tx b{font-size:clamp(18px,1.5vw,21px);font-weight:600;color:var(--ink)}
+.pp-tx span{color:var(--muted);font-size:15px;line-height:1.55;max-width:46ch}
+.pp-tx i{font-style:normal;font-size:13.5px;font-weight:600;color:var(--ink);margin-top:6px}
+.pp-go{width:48px;height:48px;border-radius:50%;border:1px solid var(--line-strong);display:grid;place-items:center;color:var(--ink);transition:background .3s,color .3s,border-color .3s,transform .4s cubic-bezier(.2,.8,.2,1)}
+.pp-go svg{width:18px;height:18px}
+.pp-row:hover .pp-go,.pp-row:focus-visible .pp-go{background:var(--accent);border-color:var(--accent);color:#fff;transform:translateX(4px)}
+/* rows rise in one after another the first time the block scrolls into view */
+.pg-pact.rv .pp-row{opacity:0;transform:translateY(22px);transition:opacity .6s ease calc(var(--i) * .12s),transform .8s cubic-bezier(.2,.8,.2,1) calc(var(--i) * .12s)}
+.pg-pact.rv.in .pp-row{opacity:1;transform:none}
+@media (max-width:900px){
+  .pg-pact{grid-template-columns:1fr;gap:20px}
+  .pp-head{position:static}
+  .pp-row{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"fig go" "tx tx";gap:14px 16px;padding:22px 4px}
+  .pp-fig{grid-area:fig}.pp-tx{grid-area:tx}.pp-go{grid-area:go;width:42px;height:42px}
+  .pp-fig b{font-size:clamp(52px,15vw,72px)}
+}
+@media (prefers-reduced-motion:reduce){.pp-row::before,.pg-pact.rv .pp-row{transition:none}.pg-pact.rv .pp-row{opacity:1;transform:none}}
 /* ---------- round 8: no eyebrows (small labels above headings) anywhere on the site ---------- */
 .eyb,.pg-story-tx small,.pf-tx small,.pg-tile-tx small,.mnav-lbl{display:none!important}
 .mnav-brands{margin-top:16px}
@@ -1578,16 +1627,18 @@ main{padding-block:0 64px}
       },
       {
         "before": "jeep",
-        "layout": "full",
+        "layout": "split",
         "image": "site/bnr-jeep",
-        "focus": "22% 55%",
+        "focus": "40% 55%",
         "kicker": "Jeep Wrangler & Gladiator",
         "title": "Go anywhere.",
         "text": "Built for the trail less travelled, and the school run.",
         "stats": "3 | models in George\n4x4 | on every model\nR1 289 900 | Wrangler Sahara, from",
         "cta": "See the Gladiator",
         "vehicle": "jeep-gladiator-rubicon",
-        "cta2": "Book a test drive"
+        "cta2": "Book a test drive",
+        "image2": "site/banner-jeep",
+        "tint": "#eceee8"
       },
       {
         "before": "fiat",
@@ -1662,7 +1713,9 @@ main{padding-block:0 64px}
           "figure": "48 h",
           "figureLabel": "or we lend you a car"
         }
-      ]
+      ],
+      "promiseTitle": "Ownership, covered.",
+      "promiseText": "Three promises that come with every car from our George workshop."
     },
     "about": {
       "title": "Your Peugeot, Citroën, Opel, Jeep and Fiat dealer in George",
@@ -3148,7 +3201,7 @@ if (SCENES.length) {
 function brandsHTML(){
   const b = PG.brands, items = b ? (b.items || []).filter(x => x && x.name) : [];
   if (!items.length) return '';
-  const one = (x, hid) => `<a class="pg-brand" href="${esc(x.href || '#')}" ${hid ? 'aria-hidden="true" tabindex="-1"' : ''}>${x.logo ? `<img src="${IMG(x.logo)}" alt="${hid ? '' : esc(x.name)}" loading="lazy">` : ''}<span>${esc(x.name)}</span></a>`;
+  const one = (x, hid) => `<a class="pg-brand" href="${esc(x.href || '#')}" ${hid ? 'aria-hidden="true" tabindex="-1"' : ''}>${x.logo ? `<img src="${IMG(x.logo)}" alt="${hid ? '' : esc(x.name)}" loading="lazy">` : `<span>${esc(x.name)}</span>`}</a>`;
   const reps = Math.max(2, Math.ceil(10 / items.length));
   let row = '', dup = ''; for (let r = 0; r < reps; r++) { row += items.map(x => one(x, r > 0)).join(''); dup += items.map(x => one(x, true)).join(''); }
   return `<section class="pg-brands" id="brands" aria-labelledby="h-brands">
@@ -3190,7 +3243,8 @@ function bannerHTML(b){
   const img = LZ((b.imageWide && !PHONE.matches) ? b.imageWide : b.image, 'site', 'alt=""');
   if (L === 'split' || L === 'split-rev') return `<section class="pg-split${L === 'split-rev' ? ' rev' : ''}" aria-label="${esc(b.title)}"${b.tint ? ` style="--tint:${esc(b.tint)}"` : ''}>
     <div class="ps-media"${f}>${img}${vid}${b.image2 ? `<div class="ps-inset">${LZ(b.image2, 'site', 'alt=""')}</div>` : ''}</div>
-    <div class="ps-tx">${kick}<h2>${esc(b.title)}</h2>${b.text ? `<p>${esc(b.text)}</p>` : ''}${acts}</div>
+    <div class="ps-tx">${kick}<h2>${esc(b.title)}</h2>${b.text ? `<p>${esc(b.text)}</p>` : ''}${(() => { const st = String(b.stats || '').split('\n').map(x => x.split('|').map(y => y.trim())).filter(x => x[0]);
+      return st.length ? `<dl class="ps-stats">${st.map(x => `<div><dt class="num">${esc(x[0])}</dt><dd>${esc(x[1] || '')}</dd></div>`).join('')}</dl>` : ''; })()}${acts}</div>
   </section>`;
   if (L === 'video') return `<section class="pg-vid" aria-label="${esc(b.title)}">
     <div class="pv-media"${f}>${img}${vid}</div>
@@ -3236,7 +3290,14 @@ function featureHTML(v, b, s){
         ? `<article${x.focus ? ` style="--f:${esc(x.focus)}"` : ''}>${x.image ? LZ(x.image, 'site', 'alt=""') : ''}<div class="sv-tx">${SVC_IC[x.form] ? `<span class="ico" aria-hidden="true">${SVC_IC[x.form]}</span>` : ''}<h3>${esc(x.title)}</h3><p>${esc(x.text)}</p>${pgBtn(x, 'pg-btn')}</div></article>`
         : `<article>${SVC_IC[x.form] ? `<span class="ico" aria-hidden="true">${SVC_IC[x.form]}</span>` : ''}<h3>${esc(x.title)}</h3><p>${esc(x.text)}</p>${pgBtn(x, 'pg-btn')}</article>`).join('')}</div>`; })()}
     ${sv.items.some(x => x.info) ? (sv.items.some(x => x.info && x.figure)
-      ? `<div class="pg-promise">${sv.items.filter(x => x.info).map(x => `<button data-pginfo="${esc(x.info)}">${x.figure ? `<span class="fig num">${esc(x.figure)}${x.figureLabel ? `<small>${esc(x.figureLabel)}</small>` : ''}</span>` : '<span></span>'}<b>${esc(x.title)}</b><span class="t">${esc(x.text)}</span><i>${esc(x.cta || 'Read more')}</i></button>`).join('')}</div>`
+      ? `<div class="pg-pact">
+          <div class="pp-head"><h3>${esc(sv.promiseTitle || 'Ownership, covered.')}</h3>${(sv.promiseText ?? 'Three promises that come with every car from our George workshop.') ? `<p>${esc(sv.promiseText ?? 'Three promises that come with every car from our George workshop.')}</p>` : ''}</div>
+          <div class="pp-list">${sv.items.filter(x => x.info).map((x, i) => { const m = String(x.figure || '').match(/^(\d+)(.*)$/);
+            return `<button class="pp-row" data-pginfo="${esc(x.info)}" style="--i:${i}">
+              <span class="pp-fig">${x.figure ? `<b class="num"${m ? ` data-count="${m[1]}"` : ''}>${m ? `<span>${esc(m[1])}</span>${esc(m[2])}` : esc(x.figure)}</b>` : ''}${x.figureLabel ? `<small>${esc(x.figureLabel)}</small>` : ''}</span>
+              <span class="pp-tx"><b>${esc(x.title)}</b><span>${esc(x.text)}</span><i>${esc(x.cta || 'Read more')}</i></span>
+              <span class="pp-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button>`; }).join('')}</div>
+        </div>`
       : `<div class="pg-owner">${sv.items.filter(x => x.info).map(x => `<button data-pginfo="${esc(x.info)}"><b>${esc(x.title)}</b><small>${esc(x.text)}</small><i aria-hidden="true">→</i></button>`).join('')}</div>`) : ''}
   </section>`;
   const ab = PG.about;
@@ -4332,6 +4393,20 @@ new MutationObserver(() => { const f = $('#wa-float'); if (f) f.classList.toggle
 window.CASite = { prelaunchCheck, calc, R, grp, parseExtras, PLACEHOLDERS,
   openVehicle: id => openVehicle(id, true), current: () => cur && cur.id, closeVehicle };
 if (window.CAEditor && !window.__CA_PREVIEW) window.CAEditor.boot();
+})();
+</script>
+<script>
+/* round 9: ownership promises reveal and count up when they scroll into view */
+(function(){
+  const box = document.querySelector('.pg-pact'); if (!box) return;
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (still || !('IntersectionObserver' in window)) { box.classList.add('in'); return; }
+  box.classList.add('rv');
+  const io = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; io.disconnect(); box.classList.add('in');
+    box.querySelectorAll('[data-count]').forEach((b, i) => { const n = +b.dataset.count, el = b.querySelector('span'); if (!el || !n) return; const t0 = performance.now() + i * 120, d = 1100;
+      const step = t => { const p = Math.min(1, Math.max(0, (t - t0) / d)); el.textContent = Math.round(n * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(step); };
+      el.textContent = '0'; requestAnimationFrame(step); }); }), {rootMargin: '0px 0px -18% 0px'});
+  io.observe(box);
 })();
 </script>
 </body></html>

@@ -1231,6 +1231,51 @@ main{padding-block:0 64px}
 .dr-back[hidden]{display:none}
 .dr-back svg{width:20px;height:20px}
 .dr-head h3{flex:1;min-width:0}
+/* round 9e: brand grid - logo, car, count and a clear link per brand */
+.pg-brands.bg{padding-block:56px 12px}
+.bg-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin:6px var(--gutter) 0}
+.bg-tile{position:relative;isolation:isolate;overflow:hidden;display:grid;grid-template-rows:auto 1fr auto;min-height:clamp(280px,21vw,330px);padding:22px 20px 18px;border-radius:var(--r-card);background:radial-gradient(120% 70% at 50% 64%,#ffffff 0%,#efeeea 78%);border:1px solid var(--line);color:#121419;text-decoration:none;transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s,border-color .3s}
+.bg-tile:hover,.bg-tile:focus-visible{transform:translateY(-4px);border-color:#121419;box-shadow:0 26px 50px -30px rgba(0,0,0,.45)}
+.bg-tile:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.bg-logo{height:42px;display:flex;align-items:center}
+.bg-logo img{height:100%;width:auto;max-width:100px;object-fit:contain;object-position:left center}
+.bg-logo b{font-family:var(--display);font-size:22px;font-weight:700}
+.bg-car{position:relative;display:block;height:clamp(120px,10.5vw,160px);margin:auto -6px}
+.bg-car::after{content:"";position:absolute;left:14%;right:14%;bottom:8%;height:9%;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.2),rgba(0,0,0,0));z-index:-1;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.bg-car img{display:block;width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply;transform:translateX(5%);transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+.bg-tile:hover .bg-car img,.bg-tile:focus-visible .bg-car img{transform:translateX(0) scale(1.04)}
+.bg-tile:hover .bg-car::after{transform:scaleX(1.08)}
+.bg-foot{display:grid;gap:6px;padding-top:14px;border-top:1px solid #e1e4ea}
+.bg-line{font-size:13px;color:#5c6371;line-height:1.35}
+.bg-go{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;transition:color .3s}
+.bg-go svg{width:16px;height:16px;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.bg-tile:hover .bg-go{color:var(--accent)}
+.bg-tile:hover .bg-go svg{transform:translateX(5px)}
+/* tiles rise in one after another */
+.bg-grid.rv .bg-tile{opacity:0;transform:translateY(24px);transition:opacity .6s ease calc(var(--i) * .08s),transform .8s cubic-bezier(.2,.8,.2,1) calc(var(--i) * .08s),box-shadow .5s,border-color .3s}
+.bg-grid.rv.in .bg-tile{opacity:1;transform:none}
+.bg-grid.rv.in .bg-tile:hover{transform:translateY(-4px);transition-delay:0s}
+@media (max-width:1100px){
+  .bg-grid{grid-template-columns:repeat(6,minmax(0,1fr))}
+  .bg-tile{grid-column:span 2}
+  .bg-tile:nth-child(4),.bg-tile:nth-child(5){grid-column:span 3}
+  .bg-car{height:140px}
+}
+/* phones: a list of brand rows - logo and count on the left, car on the right */
+@media (max-width:720px){
+  .pg-brands.bg{padding-block:40px 4px}
+  .bg-grid{grid-template-columns:1fr;gap:10px}
+  .bg-tile,.bg-tile:nth-child(4),.bg-tile:nth-child(5){grid-column:auto;min-height:0;grid-template-columns:minmax(0,1fr) 46%;grid-template-rows:auto 1fr;grid-template-areas:"logo car" "foot car";gap:10px 8px;padding:16px 0 16px 16px;background:radial-gradient(90% 120% at 78% 60%,#ffffff 0%,#efeeea 80%)}
+  .bg-logo{grid-area:logo;height:32px}
+  .bg-logo img{max-width:96px}
+  .bg-car{grid-area:car;margin:0 -10px 0 0;align-self:center;height:88px}
+  .bg-car img{transform:translateX(6%)}
+  .bg-foot{grid-area:foot;align-self:end;border-top:0;padding-top:0;gap:4px}
+  .bg-line{font-size:12.5px}
+  .bg-go{font-size:13.5px;color:var(--accent)}
+  .bg-tile:active{transform:scale(.985)}
+}
+@media (prefers-reduced-motion:reduce){.bg-grid.rv .bg-tile{opacity:1;transform:none;transition:none}.bg-car img,.bg-car::after{transition:none}}
 /* ---------- round 8: no eyebrows (small labels above headings) anywhere on the site ---------- */
 .eyb,.pg-story-tx small,.pf-tx small,.pg-tile-tx small,.mnav-lbl{display:none!important}
 .mnav-brands{margin-top:16px}
@@ -2863,7 +2908,7 @@ main{padding-block:0 64px}
 
 <!-- drawer -->
 <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="dr-title" hidden="">
-  <div class="dr-head"><button class="dr-back" id="dr-back" aria-label="Back" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 6l-6 6 6 6"/></svg></button><h3 id="dr-title"></h3><button class="x-btn" id="dr-close" aria-label="Close panel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></div>
+  <div class="dr-head"><button class="dr-back" id="dr-back" aria-label="Back" hidden=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 6l-6 6 6 6"></path></svg></button><h3 id="dr-title"></h3><button class="x-btn" id="dr-close" aria-label="Close panel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></div>
   <div class="dr-tabs" id="dr-tabs" role="tablist"></div>
   <div class="dr-body" id="dr-body"></div>
 </aside>
@@ -2906,6 +2951,17 @@ main{padding-block:0 64px}
       const step = t => { const p = Math.min(1, Math.max(0, (t - t0) / d)); el.textContent = Math.round(n * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(step); };
       el.textContent = '0'; requestAnimationFrame(step); }); }), {rootMargin: '0px 0px -18% 0px'});
   io.observe(box);
+})();
+</script>
+<script>
+/* round 9e: brand tiles rise in when the grid scrolls into view */
+(function(){
+  const g = document.querySelector('.bg-grid'); if (!g) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+  const r = g.getBoundingClientRect(); if (r.top < innerHeight * .9) return;
+  g.classList.add('rv');
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { io.disconnect(); g.classList.add('in'); } }), {rootMargin:'0px 0px -12% 0px'});
+  io.observe(g);
 })();
 </script>
 
@@ -3243,14 +3299,24 @@ if (SCENES.length) {
 
 /* marques strip + spotlight (above the stock) */
 function brandsHTML(){
+  /* round 9e: brand grid (was a marquee) - each tile jumps to that brand's range */
   const b = PG.brands, items = b ? (b.items || []).filter(x => x && x.name) : [];
   if (!items.length) return '';
-  const one = (x, hid) => `<a class="pg-brand" href="${esc(x.href || '#')}" ${hid ? 'aria-hidden="true" tabindex="-1"' : ''}>${x.logo ? `<img src="${IMG(x.logo)}" alt="${hid ? '' : esc(x.name)}" loading="lazy">` : `<span>${esc(x.name)}</span>`}</a>`;
-  const reps = Math.max(2, Math.ceil(10 / items.length));
-  let row = '', dup = ''; for (let r = 0; r < reps; r++) { row += items.map(x => one(x, r > 0)).join(''); dup += items.map(x => one(x, true)).join(''); }
-  return `<section class="pg-brands" id="brands" aria-labelledby="h-brands">
+  const lu = (PG.about || {}).lineup || [];
+  const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+  const one = (x, i) => {
+    const id = String(x.href || '').replace(/^#/, ''), sec = DATA.sections.find(s => s.id === id), cars = sec ? sec.vehicles.map(k => V[k]).filter(Boolean) : [];
+    const from = cars.filter(v => v.price).reduce((m, v) => Math.min(m, v.price), Infinity);
+    const img = x.image || (lu.find(l => l && l.section === id) || {}).image || '';
+    const line = x.line || (cars.length ? `${cars.length} model${cars.length === 1 ? '' : 's'}${isFinite(from) ? ' · from ' + R(from) : ''}` : '');
+    return `<a class="bg-tile" href="${esc(x.href || '#')}" style="--i:${i}" aria-label="${esc(x.name)}${line ? ', ' + esc(line) : ''}">
+      <span class="bg-logo">${x.logo ? `<img src="${IMG(x.logo)}" alt="" loading="lazy">` : `<b>${esc(x.name)}</b>`}</span>
+      <span class="bg-car">${img ? `<img src="${SRC(img, 'card')}" data-orig="${IMG(img)}" alt="" loading="lazy">` : ''}</span>
+      <span class="bg-foot">${line ? `<span class="bg-line num">${esc(line)}</span>` : ''}<span class="bg-go">View range${arrow}</span></span>
+    </a>`; };
+  return `<section class="pg-brands bg" id="brands" aria-labelledby="h-brands">
     <div class="pg-head">${b.kicker ? `<span class="eyb"><i aria-hidden="true"></i><span>${esc(b.kicker)}</span></span>` : ''}<h2 id="h-brands">${esc(b.title)}</h2>${b.intro ? `<p>${esc(b.intro)}</p>` : ''}</div>
-    <div class="pg-marq"><div class="pg-marq-track">${row}${dup}</div></div>
+    <div class="bg-grid">${items.map(one).join('')}</div>
   </section>`;
 }
 (function(){

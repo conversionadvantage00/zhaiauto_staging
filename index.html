@@ -814,6 +814,9 @@ main{padding-block:0 64px}
 .foot-links{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:14px}
 .foot-links button{background:none;border:0;padding:0;color:var(--ink);font-size:14px;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line-strong)}
 .foot-links button:hover{text-decoration-color:var(--ink)}
+.foot-links a{color:var(--ink);font-size:14px;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line-strong)}
+.foot-links a:hover{text-decoration-color:var(--ink)}
+.consent a{color:inherit;text-decoration:underline;text-underline-offset:2px}
 .stock-head h2{font-family:var(--display);font-stretch:112%}
 
 /* banners show the whole photo on desktop: height follows the image's own shape */
@@ -1478,7 +1481,51 @@ main{padding-block:0 64px}
     "cars/used-suzuki-fronx-gl-2025-0": "#7a7a78",
     "cars/used-suzuki-fronx-gl-2025-1": "#7b7d7b",
     "cars/used-suzuki-fronx-gl-2025-2": "#6c6b68",
-    "cars/used-suzuki-fronx-gl-2025-3": "#525759"
+    "cars/used-suzuki-fronx-gl-2025-3": "#525759",
+    "cars/demo-peugeot-landtrek-active-dc-4x4-white-0": "#7c7e7d",
+    "cars/demo-peugeot-landtrek-active-dc-4x4-white-1": "#7a7a79",
+    "cars/demo-peugeot-landtrek-active-dc-4x4-white-2": "#8b8988",
+    "cars/demo-peugeot-landtrek-active-dc-4x4-white-3": "#545557",
+    "cars/demo-citroen-c3-max-white-a-0": "#7b7a79",
+    "cars/demo-citroen-c3-max-white-a-1": "#7f7e7a",
+    "cars/demo-citroen-c3-max-white-a-2": "#747472",
+    "cars/demo-citroen-c3-max-white-a-3": "#4d4f4f",
+    "cars/demo-jac-t8-super-lux-grey-0": "#828386",
+    "cars/demo-jac-t8-super-lux-grey-1": "#82807d",
+    "cars/demo-jac-t8-super-lux-grey-2": "#7d7c79",
+    "cars/demo-jac-t8-super-lux-grey-3": "#4f4f4e",
+    "cars/demo-citroen-c3-aircross-max-silver-0": "#797978",
+    "cars/demo-citroen-c3-aircross-max-silver-1": "#80807c",
+    "cars/demo-citroen-c3-aircross-max-silver-2": "#858583",
+    "cars/demo-citroen-c3-aircross-max-silver-3": "#5a5b5a",
+    "cars/demo-citroen-basalt-max-white-0": "#7b7b7b",
+    "cars/demo-citroen-basalt-max-white-1": "#7a7975",
+    "cars/demo-citroen-basalt-max-white-2": "#727270",
+    "cars/demo-citroen-basalt-max-white-3": "#4f5556",
+    "cars/demo-citroen-c3-aircross-max-7-white-0": "#737372",
+    "cars/demo-citroen-c3-aircross-max-7-white-1": "#81807c",
+    "cars/demo-citroen-c3-aircross-max-7-white-2": "#7c7a78",
+    "cars/demo-citroen-c3-aircross-max-7-white-3": "#4e4f50",
+    "cars/demo-citroen-c3-max-white-b-0": "#7f7f80",
+    "cars/demo-citroen-c3-max-white-b-1": "#797a77",
+    "cars/demo-citroen-c3-max-white-b-2": "#6a6966",
+    "cars/demo-citroen-c3-max-white-b-3": "#6f6e6c",
+    "cars/demo-peugeot-landtrek-4action-grey-0": "#818485",
+    "cars/demo-peugeot-landtrek-4action-grey-1": "#7d7e7c",
+    "cars/demo-peugeot-landtrek-4action-grey-2": "#727371",
+    "cars/demo-peugeot-landtrek-4action-grey-3": "#535456",
+    "cars/demo-peugeot-landtrek-4action-white-0": "#787878",
+    "cars/demo-peugeot-landtrek-4action-white-1": "#767570",
+    "cars/demo-peugeot-landtrek-4action-white-2": "#7f7e7b",
+    "cars/demo-peugeot-landtrek-4action-white-3": "#505152",
+    "cars/demo-peugeot-landtrek-4action-silver-0": "#848789",
+    "cars/demo-peugeot-landtrek-4action-silver-1": "#7a7974",
+    "cars/demo-peugeot-landtrek-4action-silver-2": "#74726f",
+    "cars/demo-peugeot-landtrek-4action-silver-3": "#4e4f4f",
+    "cars/demo-peugeot-2008-allure-grey-0": "#999a9b",
+    "cars/demo-peugeot-2008-allure-grey-1": "#7a7c7b",
+    "cars/demo-peugeot-2008-allure-grey-2": "#6e6d6c",
+    "cars/demo-peugeot-2008-allure-grey-3": "#525354"
   },
   "meta": {
     "title": "Zhai Auto George | Peugeot, Citroën, Opel, Jeep & Fiat",
@@ -1639,12 +1686,16 @@ main{padding-block:0 64px}
         "#specials"
       ],
       [
-        "Brands",
-        "#brands"
-      ],
-      [
         "Pre-owned",
         "#pre-owned"
+      ],
+      [
+        "Demo models",
+        "#demo"
+      ],
+      [
+        "Brands",
+        "#brands"
       ],
       [
         "Service & parts",
@@ -1941,6 +1992,10 @@ main{padding-block:0 64px}
       [
         "Finance & offer terms",
         "terms"
+      ],
+      [
+        "Privacy notice",
+        "privacy.html"
       ]
     ],
     "info": {
@@ -2088,6 +2143,55 @@ main{padding-block:0 64px}
       "layout": "promo"
     },
     {
+      "id": "pre-owned",
+      "kicker": "Pre-owned",
+      "label": "Pre-owned",
+      "title": "Pre-owned",
+      "intro": "Quality used cars at our George showroom, each with a full service record.",
+      "cta": "View details",
+      "countWord": [
+        "car",
+        "cars"
+      ],
+      "vehicles": [
+        "used-peugeot-2008-gt-line-2021",
+        "used-jeep-cherokee-trailhawk-2014",
+        "used-peugeot-2008-active-2021",
+        "used-fiat-500-club-2024",
+        "used-chery-tiggo4-pro-2026",
+        "used-citroen-c3-aircross-shine-2024",
+        "used-suzuki-fronx-gl-2025",
+        "used-citroen-c3-aircross-max-2026",
+        "used-peugeot-landtrek-allure-2024",
+        "used-opel-mokka-gs-2025"
+      ]
+    },
+    {
+      "id": "demo",
+      "kicker": "Demo models",
+      "label": "Demo models",
+      "title": "Demo models",
+      "intro": "Showroom demo stock with delivery mileage, ready to drive away.",
+      "cta": "View details",
+      "countWord": [
+        "car",
+        "cars"
+      ],
+      "vehicles": [
+        "demo-citroen-c3-max-white-a",
+        "demo-citroen-c3-max-white-b",
+        "demo-citroen-c3-aircross-max-silver",
+        "demo-citroen-basalt-max-white",
+        "demo-citroen-c3-aircross-max-7-white",
+        "demo-peugeot-landtrek-active-dc-4x4-white",
+        "demo-peugeot-2008-allure-grey",
+        "demo-jac-t8-super-lux-grey",
+        "demo-peugeot-landtrek-4action-white",
+        "demo-peugeot-landtrek-4action-silver",
+        "demo-peugeot-landtrek-4action-grey"
+      ]
+    },
+    {
       "id": "peugeot",
       "kicker": "Bakkies & SUVs",
       "label": "Peugeot",
@@ -2160,30 +2264,6 @@ main{padding-block:0 64px}
       "layout": "feature",
       "vehicles": [
         "fiat-500"
-      ]
-    },
-    {
-      "id": "pre-owned",
-      "kicker": "Pre-owned",
-      "label": "Pre-owned",
-      "title": "Pre-owned",
-      "intro": "Quality used cars at our George showroom, each with a full service record.",
-      "cta": "View details",
-      "countWord": [
-        "car",
-        "cars"
-      ],
-      "vehicles": [
-        "used-peugeot-2008-gt-line-2021",
-        "used-jeep-cherokee-trailhawk-2014",
-        "used-peugeot-2008-active-2021",
-        "used-fiat-500-club-2024",
-        "used-chery-tiggo4-pro-2026",
-        "used-citroen-c3-aircross-shine-2024",
-        "used-suzuki-fronx-gl-2025",
-        "used-citroen-c3-aircross-max-2026",
-        "used-peugeot-landtrek-allure-2024",
-        "used-opel-mokka-gs-2025"
       ]
     }
   ],
@@ -2969,7 +3049,7 @@ main{padding-block:0 64px}
       "fuel": "Petrol",
       "km": 51000,
       "price": 189900,
-      "priceMode": "calculated",
+      "priceMode": "fixed",
       "images": [
         "cars/used-peugeot-2008-gt-line-2021-0",
         "cars/used-peugeot-2008-gt-line-2021-1",
@@ -2999,7 +3079,9 @@ main{padding-block:0 64px}
           "cars.co.za 11144272"
         ]
       ],
-      "extrasText": "Electric Windows, Air bags, LED lights, Aircon, Sunroof, Climate control, Apple CarPlay & Android Auto, Alarm, Park distance control, Cruise control, ISOFIX, Leather seats"
+      "extrasText": "Electric Windows, Air bags, LED lights, Aircon, Sunroof, Climate control, Apple CarPlay & Android Auto, Alarm, Park distance control, Cruise control, ISOFIX, Leather seats",
+      "monthlyFixed": 3408,
+      "monthlyNote": "Estimated monthly repayment as listed by Zhai Auto on cars.co.za. Ts and Cs apply; final terms depend on the finance house's approval."
     },
     {
       "id": "used-jeep-cherokee-trailhawk-2014",
@@ -3061,7 +3143,7 @@ main{padding-block:0 64px}
       "fuel": "Petrol",
       "km": 81000,
       "price": 199999,
-      "priceMode": "calculated",
+      "priceMode": "fixed",
       "images": [
         "cars/used-peugeot-2008-active-2021-0",
         "cars/used-peugeot-2008-active-2021-1",
@@ -3091,7 +3173,9 @@ main{padding-block:0 64px}
           "cars.co.za 11190678"
         ]
       ],
-      "extrasText": "ABS, Electric Windows, Air bags, LED lights, Aircon, Climate control, Apple CarPlay & Android Auto, Alarm, Park distance control, Cruise control, ISOFIX, Radio"
+      "extrasText": "ABS, Electric Windows, Air bags, LED lights, Aircon, Climate control, Apple CarPlay & Android Auto, Alarm, Park distance control, Cruise control, ISOFIX, Radio",
+      "monthlyFixed": 3590,
+      "monthlyNote": "Estimated monthly repayment as listed by Zhai Auto on cars.co.za. Ts and Cs apply; final terms depend on the finance house's approval."
     },
     {
       "id": "used-fiat-500-club-2024",
@@ -3107,7 +3191,7 @@ main{padding-block:0 64px}
       "fuel": "Petrol",
       "km": 25600,
       "price": 220900,
-      "priceMode": "calculated",
+      "priceMode": "fixed",
       "images": [
         "cars/used-fiat-500-club-2024-0",
         "cars/used-fiat-500-club-2024-1",
@@ -3137,7 +3221,9 @@ main{padding-block:0 64px}
           "cars.co.za 11280249"
         ]
       ],
-      "extrasText": "ABS, Electric Windows, Air bags, LED lights, Aircon, Climate control, Apple CarPlay & Android Auto, Alarm, Park distance control, Cruise control, ISOFIX"
+      "extrasText": "ABS, Electric Windows, Air bags, LED lights, Aircon, Climate control, Apple CarPlay & Android Auto, Alarm, Park distance control, Cruise control, ISOFIX",
+      "monthlyFixed": 3965,
+      "monthlyNote": "Estimated monthly repayment as listed by Zhai Auto on cars.co.za. Ts and Cs apply; final terms depend on the finance house's approval."
     },
     {
       "id": "used-chery-tiggo4-pro-2026",
@@ -3153,7 +3239,7 @@ main{padding-block:0 64px}
       "fuel": "Petrol",
       "km": 7200,
       "price": 259900,
-      "priceMode": "calculated",
+      "priceMode": "fixed",
       "images": [
         "cars/used-chery-tiggo4-pro-2026-0",
         "cars/used-chery-tiggo4-pro-2026-1",
@@ -3183,7 +3269,9 @@ main{padding-block:0 64px}
           "cars.co.za 11257231"
         ]
       ],
-      "extrasText": "ABS, Electric Windows, Air bags, LED lights, Rear-view camera, Aircon, Climate control, Apple CarPlay & Android Auto, Alarm, Park distance control, Cruise control, ISOFIX, Radio, Leather seats"
+      "extrasText": "ABS, Electric Windows, Air bags, LED lights, Rear-view camera, Aircon, Climate control, Apple CarPlay & Android Auto, Alarm, Park distance control, Cruise control, ISOFIX, Radio, Leather seats",
+      "monthlyFixed": 4665,
+      "monthlyNote": "Estimated monthly repayment as listed by Zhai Auto on cars.co.za. Ts and Cs apply; final terms depend on the finance house's approval."
     },
     {
       "id": "used-citroen-c3-aircross-shine-2024",
@@ -3199,7 +3287,7 @@ main{padding-block:0 64px}
       "fuel": "Petrol",
       "km": 6800,
       "price": 279900,
-      "priceMode": "calculated",
+      "priceMode": "fixed",
       "images": [
         "cars/used-citroen-c3-aircross-shine-2024-0",
         "cars/used-citroen-c3-aircross-shine-2024-1",
@@ -3229,7 +3317,9 @@ main{padding-block:0 64px}
           "cars.co.za 11144246"
         ]
       ],
-      "extrasText": "ABS, Electric Windows, Air bags, LED lights, Aircon, Sunroof, Xenon lights, Climate control, Apple CarPlay & Android Auto, Alarm, Park distance control, Cruise control, ISOFIX, Sat nav"
+      "extrasText": "ABS, Electric Windows, Air bags, LED lights, Aircon, Sunroof, Xenon lights, Climate control, Apple CarPlay & Android Auto, Alarm, Park distance control, Cruise control, ISOFIX, Sat nav",
+      "monthlyFixed": 5024,
+      "monthlyNote": "Estimated monthly repayment as listed by Zhai Auto on cars.co.za. Ts and Cs apply; final terms depend on the finance house's approval."
     },
     {
       "id": "used-suzuki-fronx-gl-2025",
@@ -3245,7 +3335,7 @@ main{padding-block:0 64px}
       "fuel": "Petrol",
       "km": 5800,
       "price": 279900,
-      "priceMode": "calculated",
+      "priceMode": "fixed",
       "images": [
         "cars/used-suzuki-fronx-gl-2025-0",
         "cars/used-suzuki-fronx-gl-2025-1",
@@ -3275,7 +3365,9 @@ main{padding-block:0 64px}
           "cars.co.za 10925584"
         ]
       ],
-      "extrasText": "ABS, Electric Windows, Air bags, LED lights, Rear-view camera, Aircon, Climate control, Apple CarPlay & Android Auto, Park distance control, Cruise control, ISOFIX"
+      "extrasText": "ABS, Electric Windows, Air bags, LED lights, Rear-view camera, Aircon, Climate control, Apple CarPlay & Android Auto, Park distance control, Cruise control, ISOFIX",
+      "monthlyFixed": 5024,
+      "monthlyNote": "Estimated monthly repayment as listed by Zhai Auto on cars.co.za. Ts and Cs apply; final terms depend on the finance house's approval."
     },
     {
       "id": "used-citroen-c3-aircross-max-2026",
@@ -3291,7 +3383,7 @@ main{padding-block:0 64px}
       "fuel": "Petrol",
       "km": 14400,
       "price": 289900,
-      "priceMode": "calculated",
+      "priceMode": "fixed",
       "images": [
         "cars/used-citroen-c3-aircross-max-2026-0",
         "cars/used-citroen-c3-aircross-max-2026-1",
@@ -3321,7 +3413,9 @@ main{padding-block:0 64px}
           "cars.co.za 11258809"
         ]
       ],
-      "extrasText": "ABS, Electric Windows, Air bags, LED lights, Rear-view camera, Aircon, Apple CarPlay & Android Auto, Alarm, Park distance control, Cruise control, ISOFIX, Radio"
+      "extrasText": "ABS, Electric Windows, Air bags, LED lights, Rear-view camera, Aircon, Apple CarPlay & Android Auto, Alarm, Park distance control, Cruise control, ISOFIX, Radio",
+      "monthlyFixed": 5203,
+      "monthlyNote": "Estimated monthly repayment as listed by Zhai Auto on cars.co.za. Ts and Cs apply; final terms depend on the finance house's approval."
     },
     {
       "id": "used-peugeot-landtrek-allure-2024",
@@ -3337,7 +3431,7 @@ main{padding-block:0 64px}
       "fuel": "Diesel",
       "km": 46500,
       "price": 349900,
-      "priceMode": "calculated",
+      "priceMode": "fixed",
       "images": [
         "cars/used-peugeot-landtrek-allure-2024-0",
         "cars/used-peugeot-landtrek-allure-2024-1",
@@ -3367,7 +3461,9 @@ main{padding-block:0 64px}
           "cars.co.za 11310818"
         ]
       ],
-      "extrasText": "ABS, Electric Windows, Air bags, LED lights, Rear-view camera, Aircon, Climate control, Apple CarPlay & Android Auto, Park distance control, Cruise control, ISOFIX, Radio"
+      "extrasText": "ABS, Electric Windows, Air bags, LED lights, Rear-view camera, Aircon, Climate control, Apple CarPlay & Android Auto, Park distance control, Cruise control, ISOFIX, Radio",
+      "monthlyFixed": 6280,
+      "monthlyNote": "Estimated monthly repayment as listed by Zhai Auto on cars.co.za. Ts and Cs apply; final terms depend on the finance house's approval."
     },
     {
       "id": "used-opel-mokka-gs-2025",
@@ -3383,7 +3479,7 @@ main{padding-block:0 64px}
       "fuel": "Petrol",
       "km": 14800,
       "price": 419900,
-      "priceMode": "calculated",
+      "priceMode": "fixed",
       "images": [
         "cars/used-opel-mokka-gs-2025-0",
         "cars/used-opel-mokka-gs-2025-1",
@@ -3413,7 +3509,338 @@ main{padding-block:0 64px}
           "cars.co.za 11172560"
         ]
       ],
-      "extrasText": "ABS, Electric Windows, Air bags, LED lights, Rear-view camera, Aircon, Xenon lights, Climate control, Apple CarPlay & Android Auto, Wireless charging pad, Alarm, Park distance control, ISOFIX, Cruise control, Radio, Leather seats, Heated seats"
+      "extrasText": "ABS, Electric Windows, Air bags, LED lights, Rear-view camera, Aircon, Xenon lights, Climate control, Apple CarPlay & Android Auto, Wireless charging pad, Alarm, Park distance control, ISOFIX, Cruise control, Radio, Leather seats, Heated seats",
+      "monthlyFixed": 7536,
+      "monthlyNote": "Estimated monthly repayment as listed by Zhai Auto on cars.co.za. Ts and Cs apply; final terms depend on the finance house's approval."
+    },
+    {
+      "id": "demo-citroen-c3-max-white-a",
+      "slug": "demo-citroen-c3-max-white-a",
+      "model": "",
+      "condition": "demo",
+      "year": "2026",
+      "make": "Citroën",
+      "title": "2026 Citroën C3",
+      "sub": "1.2 Max manual",
+      "extra": "",
+      "transmission": "Manual",
+      "fuel": "Petrol",
+      "km": 10,
+      "price": 199900,
+      "priceMode": "fixed",
+      "monthlyFixed": 3588,
+      "monthlyNote": "Estimated monthly repayment as listed by Zhai Auto on cars.co.za. Ts and Cs apply; final terms depend on the finance house's approval.",
+      "images": [
+        "cars/demo-citroen-c3-max-white-a-0",
+        "cars/demo-citroen-c3-max-white-a-1",
+        "cars/demo-citroen-c3-max-white-a-2",
+        "cars/demo-citroen-c3-max-white-a-3"
+      ],
+      "stock": "11258918",
+      "colour": "White",
+      "engine": "1.2 petrol",
+      "seats": 5,
+      "dealerNotes": "Demo model with delivery mileage, at our George showroom, 78 York Street.",
+      "extrasText": "ABS, Electric Windows, Air bags, LED lights, Rear-view camera, Aircon, Apple CarPlay & Android Auto, Alarm, ISOFIX, Radio"
+    },
+    {
+      "id": "demo-citroen-c3-max-white-b",
+      "slug": "demo-citroen-c3-max-white-b",
+      "model": "",
+      "condition": "demo",
+      "year": "2026",
+      "make": "Citroën",
+      "title": "2026 Citroën C3",
+      "sub": "1.2 Max manual",
+      "extra": "",
+      "transmission": "Manual",
+      "fuel": "Petrol",
+      "km": 10,
+      "price": 199900,
+      "priceMode": "fixed",
+      "monthlyFixed": 3588,
+      "monthlyNote": "Estimated monthly repayment as listed by Zhai Auto on cars.co.za. Ts and Cs apply; final terms depend on the finance house's approval.",
+      "images": [
+        "cars/demo-citroen-c3-max-white-b-0",
+        "cars/demo-citroen-c3-max-white-b-1",
+        "cars/demo-citroen-c3-max-white-b-2",
+        "cars/demo-citroen-c3-max-white-b-3"
+      ],
+      "stock": "10879737",
+      "colour": "White",
+      "engine": "1.2 petrol",
+      "seats": 5,
+      "dealerNotes": "Demo model with delivery mileage, at our George showroom, 78 York Street.",
+      "extrasText": "Electric Windows, LED lights, Rear-view camera, Aircon, Apple CarPlay & Android Auto, Alarm, Park distance control, ISOFIX, Radio"
+    },
+    {
+      "id": "demo-citroen-c3-aircross-max-silver",
+      "slug": "demo-citroen-c3-aircross-max-silver",
+      "model": "",
+      "condition": "demo",
+      "year": "2026",
+      "make": "Citroën",
+      "title": "2026 Citroën C3 Aircross",
+      "sub": "Max 1.2T auto",
+      "extra": "",
+      "transmission": "Automatic",
+      "fuel": "Petrol",
+      "km": 10,
+      "price": 329900,
+      "priceMode": "fixed",
+      "monthlyFixed": 5921,
+      "monthlyNote": "Estimated monthly repayment as listed by Zhai Auto on cars.co.za. Ts and Cs apply; final terms depend on the finance house's approval.",
+      "images": [
+        "cars/demo-citroen-c3-aircross-max-silver-0",
+        "cars/demo-citroen-c3-aircross-max-silver-1",
+        "cars/demo-citroen-c3-aircross-max-silver-2",
+        "cars/demo-citroen-c3-aircross-max-silver-3"
+      ],
+      "stock": "11259443",
+      "colour": "Silver",
+      "engine": "1.2 turbo petrol",
+      "seats": 5,
+      "dealerNotes": "Demo model with delivery mileage, at our George showroom, 78 York Street.",
+      "extrasText": "ABS, Electric Windows, Air bags, LED lights, Rear-view camera, Aircon, Apple CarPlay & Android Auto, Alarm, Park distance control, Cruise control, ISOFIX"
+    },
+    {
+      "id": "demo-citroen-basalt-max-white",
+      "slug": "demo-citroen-basalt-max-white",
+      "model": "",
+      "condition": "demo",
+      "year": "2026",
+      "make": "Citroën",
+      "title": "2026 Citroën Basalt",
+      "sub": "Max 1.2T auto",
+      "extra": "",
+      "transmission": "Automatic",
+      "fuel": "Petrol",
+      "km": 10,
+      "price": 335000,
+      "priceMode": "fixed",
+      "monthlyFixed": 6013,
+      "monthlyNote": "Estimated monthly repayment as listed by Zhai Auto on cars.co.za. Ts and Cs apply; final terms depend on the finance house's approval.",
+      "images": [
+        "cars/demo-citroen-basalt-max-white-0",
+        "cars/demo-citroen-basalt-max-white-1",
+        "cars/demo-citroen-basalt-max-white-2",
+        "cars/demo-citroen-basalt-max-white-3"
+      ],
+      "stock": "11258825",
+      "colour": "White",
+      "engine": "1.2 turbo petrol",
+      "seats": 5,
+      "dealerNotes": "Demo model with delivery mileage, at our George showroom, 78 York Street.",
+      "extrasText": "ABS, Electric Windows, Air bags, LED lights, Rear-view camera, Aircon, Apple CarPlay & Android Auto, Alarm, Park distance control, Cruise control, ISOFIX, Radio"
+    },
+    {
+      "id": "demo-citroen-c3-aircross-max-7-white",
+      "slug": "demo-citroen-c3-aircross-max-7-white",
+      "model": "",
+      "condition": "demo",
+      "year": "2026",
+      "make": "Citroën",
+      "title": "2026 Citroën C3 Aircross",
+      "sub": "Max 1.2T auto, 7 seats",
+      "extra": "",
+      "transmission": "Automatic",
+      "fuel": "Petrol",
+      "km": 10,
+      "price": 335000,
+      "priceMode": "fixed",
+      "monthlyFixed": 6013,
+      "monthlyNote": "Estimated monthly repayment as listed by Zhai Auto on cars.co.za. Ts and Cs apply; final terms depend on the finance house's approval.",
+      "images": [
+        "cars/demo-citroen-c3-aircross-max-7-white-0",
+        "cars/demo-citroen-c3-aircross-max-7-white-1",
+        "cars/demo-citroen-c3-aircross-max-7-white-2",
+        "cars/demo-citroen-c3-aircross-max-7-white-3"
+      ],
+      "stock": "11258819",
+      "colour": "White",
+      "engine": "1.2 turbo petrol",
+      "seats": 7,
+      "dealerNotes": "Demo model with delivery mileage, at our George showroom, 78 York Street.",
+      "extrasText": "ABS, Electric Windows, Air bags, LED lights, Rear-view camera, Aircon, Apple CarPlay & Android Auto, Alarm, Park distance control, Cruise control, ISOFIX, Radio"
+    },
+    {
+      "id": "demo-peugeot-landtrek-active-dc-4x4-white",
+      "slug": "demo-peugeot-landtrek-active-dc-4x4-white",
+      "model": "",
+      "condition": "demo",
+      "year": "2026",
+      "make": "Peugeot",
+      "title": "2026 Peugeot Landtrek",
+      "sub": "1.9D Active double cab 4x4",
+      "extra": "",
+      "transmission": "Manual",
+      "fuel": "Diesel",
+      "km": 10,
+      "price": 375000,
+      "priceMode": "fixed",
+      "monthlyFixed": 6731,
+      "monthlyNote": "Estimated monthly repayment as listed by Zhai Auto on cars.co.za. Ts and Cs apply; final terms depend on the finance house's approval.",
+      "images": [
+        "cars/demo-peugeot-landtrek-active-dc-4x4-white-0",
+        "cars/demo-peugeot-landtrek-active-dc-4x4-white-1",
+        "cars/demo-peugeot-landtrek-active-dc-4x4-white-2",
+        "cars/demo-peugeot-landtrek-active-dc-4x4-white-3"
+      ],
+      "stock": "10873805",
+      "colour": "White",
+      "engine": "1.9 turbo diesel",
+      "seats": 5,
+      "dealerNotes": "Demo model with delivery mileage, at our George showroom, 78 York Street.",
+      "extrasText": "ABS, Electric Windows, Air bags, Aircon, Alarm, Park distance control, Radio"
+    },
+    {
+      "id": "demo-peugeot-2008-allure-grey",
+      "slug": "demo-peugeot-2008-allure-grey",
+      "model": "",
+      "condition": "demo",
+      "year": "2026",
+      "make": "Peugeot",
+      "title": "2026 Peugeot 2008",
+      "sub": "1.2T Allure auto",
+      "extra": "",
+      "transmission": "Automatic",
+      "fuel": "Petrol",
+      "km": 10,
+      "price": 400900,
+      "priceMode": "fixed",
+      "monthlyFixed": 7195,
+      "monthlyNote": "Estimated monthly repayment as listed by Zhai Auto on cars.co.za. Ts and Cs apply; final terms depend on the finance house's approval.",
+      "images": [
+        "cars/demo-peugeot-2008-allure-grey-0",
+        "cars/demo-peugeot-2008-allure-grey-1",
+        "cars/demo-peugeot-2008-allure-grey-2",
+        "cars/demo-peugeot-2008-allure-grey-3"
+      ],
+      "stock": "10618465",
+      "colour": "Grey",
+      "engine": "1.2 turbo petrol",
+      "seats": 5,
+      "dealerNotes": "Demo model with delivery mileage, at our George showroom, 78 York Street."
+    },
+    {
+      "id": "demo-jac-t8-super-lux-grey",
+      "slug": "demo-jac-t8-super-lux-grey",
+      "model": "",
+      "condition": "demo",
+      "year": "2026",
+      "make": "JAC",
+      "title": "2026 JAC T8",
+      "sub": "2.0 CTI Super Lux double cab",
+      "extra": "",
+      "transmission": "Manual",
+      "fuel": "Diesel",
+      "km": 10,
+      "price": 434900,
+      "priceMode": "fixed",
+      "monthlyFixed": 7806,
+      "monthlyNote": "Estimated monthly repayment as listed by Zhai Auto on cars.co.za. Ts and Cs apply; final terms depend on the finance house's approval.",
+      "images": [
+        "cars/demo-jac-t8-super-lux-grey-0",
+        "cars/demo-jac-t8-super-lux-grey-1",
+        "cars/demo-jac-t8-super-lux-grey-2",
+        "cars/demo-jac-t8-super-lux-grey-3"
+      ],
+      "stock": "11262835",
+      "colour": "Grey",
+      "engine": "2.0 turbo diesel",
+      "seats": 5,
+      "dealerNotes": "Demo model with delivery mileage, at our George showroom, 78 York Street.",
+      "extrasText": "ABS, Electric Windows, Air bags, LED lights, Rear-view camera, Aircon, Sunroof, Apple CarPlay & Android Auto, Alarm, Park distance control, Cruise control, ISOFIX, Radio, Leather seats"
+    },
+    {
+      "id": "demo-peugeot-landtrek-4action-white",
+      "slug": "demo-peugeot-landtrek-4action-white",
+      "model": "",
+      "condition": "demo",
+      "year": "2026",
+      "make": "Peugeot",
+      "title": "2026 Peugeot Landtrek",
+      "sub": "1.9D 4Action 4x4 double cab auto",
+      "extra": "",
+      "transmission": "Automatic",
+      "fuel": "Diesel",
+      "km": 10,
+      "price": 499900,
+      "priceMode": "fixed",
+      "monthlyFixed": 8972,
+      "monthlyNote": "Estimated monthly repayment as listed by Zhai Auto on cars.co.za. Ts and Cs apply; final terms depend on the finance house's approval.",
+      "images": [
+        "cars/demo-peugeot-landtrek-4action-white-0",
+        "cars/demo-peugeot-landtrek-4action-white-1",
+        "cars/demo-peugeot-landtrek-4action-white-2",
+        "cars/demo-peugeot-landtrek-4action-white-3"
+      ],
+      "stock": "10877022",
+      "colour": "White",
+      "engine": "1.9 turbo diesel",
+      "seats": 5,
+      "dealerNotes": "Demo model with delivery mileage, at our George showroom, 78 York Street.",
+      "extrasText": "ABS, Electric Windows, Air bags, LED lights, Rear-view camera, Climate control, Apple CarPlay & Android Auto, Alarm, Park distance control, Cruise control, ISOFIX, Radio, Leather seats, Sat nav"
+    },
+    {
+      "id": "demo-peugeot-landtrek-4action-silver",
+      "slug": "demo-peugeot-landtrek-4action-silver",
+      "model": "",
+      "condition": "demo",
+      "year": "2026",
+      "make": "Peugeot",
+      "title": "2026 Peugeot Landtrek",
+      "sub": "1.9D 4Action 4x4 double cab auto",
+      "extra": "",
+      "transmission": "Automatic",
+      "fuel": "Diesel",
+      "km": 10,
+      "price": 499900,
+      "priceMode": "fixed",
+      "monthlyFixed": 8972,
+      "monthlyNote": "Estimated monthly repayment as listed by Zhai Auto on cars.co.za. Ts and Cs apply; final terms depend on the finance house's approval.",
+      "images": [
+        "cars/demo-peugeot-landtrek-4action-silver-0",
+        "cars/demo-peugeot-landtrek-4action-silver-1",
+        "cars/demo-peugeot-landtrek-4action-silver-2",
+        "cars/demo-peugeot-landtrek-4action-silver-3"
+      ],
+      "stock": "10876371",
+      "colour": "Silver",
+      "engine": "1.9 turbo diesel",
+      "seats": 5,
+      "dealerNotes": "Demo model with delivery mileage, at our George showroom, 78 York Street.",
+      "extrasText": "ABS, Electric Windows, Air bags, LED lights, Rear-view camera, Aircon, Climate control, Apple CarPlay & Android Auto, Alarm, Park distance control, Cruise control, Radio, Sat nav"
+    },
+    {
+      "id": "demo-peugeot-landtrek-4action-grey",
+      "slug": "demo-peugeot-landtrek-4action-grey",
+      "model": "",
+      "condition": "demo",
+      "year": "2026",
+      "make": "Peugeot",
+      "title": "2026 Peugeot Landtrek",
+      "sub": "1.9D 4Action 4x4 double cab auto",
+      "extra": "",
+      "transmission": "Automatic",
+      "fuel": "Diesel",
+      "km": 10,
+      "price": 519900,
+      "priceMode": "fixed",
+      "monthlyFixed": 9331,
+      "monthlyNote": "Estimated monthly repayment as listed by Zhai Auto on cars.co.za. Ts and Cs apply; final terms depend on the finance house's approval.",
+      "images": [
+        "cars/demo-peugeot-landtrek-4action-grey-0",
+        "cars/demo-peugeot-landtrek-4action-grey-1",
+        "cars/demo-peugeot-landtrek-4action-grey-2",
+        "cars/demo-peugeot-landtrek-4action-grey-3"
+      ],
+      "stock": "10877165",
+      "colour": "Moonstone Grey",
+      "engine": "1.9 turbo diesel",
+      "seats": 5,
+      "dealerNotes": "Demo model with delivery mileage, at our George showroom, 78 York Street.",
+      "extrasText": "Electric Windows, Air bags, LED lights, Rear-view camera, Aircon, Climate control, Apple CarPlay & Android Auto, Park distance control, Cruise control, ISOFIX, Radio, Sat nav, Leather seats"
     }
   ]
 }
@@ -3586,7 +4013,7 @@ function prelaunchCheck(data){
     ((pg.hero || {}).scenes || []).forEach((s, i) => { if (!s.image) add(W, `hero scene ${i + 1} has no image`); if (!s.title) add(W, `hero scene ${i + 1} has no title`); if (s.vehicle && !vIds.has(s.vehicle)) add(W, `hero scene ${i + 1} opens car "${s.vehicle}", which is not in the stock list`); });
     ((pg.brands || {}).items || []).forEach((x, i) => { if (!x.logo) add(W, `brand ${i + 1} (${x.name || 'no name'}) has no logo`); if (x.href && x.href[0] === '#' && x.href.length > 1 && !secIds.has(x.href.slice(1))) add(W, `brand ${x.name} links to "${x.href}", which is not a section`); });
     const infoKeys = new Set(Object.keys(pg.info || {}));
-    [...((pg.services || {}).items || []).filter(x => x.info).map(x => x.info), ...(pg.footLinks || []).map(x => x[1])].forEach(k => { if (!infoKeys.has(k)) add(W, `link to owner info page "${k}", which doesn't exist`); });
+    [...((pg.services || {}).items || []).filter(x => x.info).map(x => x.info), ...(pg.footLinks || []).map(x => x[1]).filter(k => !/\./.test(k))].forEach(k => { if (!infoKeys.has(k)) add(W, `link to owner info page "${k}", which doesn't exist`); });
   }
   if (!(data.dealer.finance && data.dealer.finance.confirmed)) add('Finance defaults', 'finance terms not confirmed for this client (set "confirmed": true once checked)');
   if (data.meta && data.meta.master) add('Template', 'this is the master template: export a working copy and build from that');
@@ -3998,7 +4425,7 @@ function featureHTML(v, b, s){
 /* footer */
 $('#foot').innerHTML = `
   <div id="contact" class="foot-brand">${D.logo ? `<img src="${IMG(D.logo)}" alt="${esc(D.name)}">` : `<h4>${esc(D.name)}</h4>`}<p>${esc(D.tagline || '')}</p>
-    ${(D.social || []).length ? `<p class="foot-social">${D.social.map(s => `<a href="${esc(s[1])}" target="_blank" rel="noopener">${esc(s[0])}</a>`).join('')}</p>` : ''}${(PG.footLinks || []).length ? `<div class="foot-links">${PG.footLinks.map(x => `<button data-pginfo="${esc(x[1])}">${esc(x[0])}</button>`).join('')}</div>` : ''}</div>
+    ${(D.social || []).length ? `<p class="foot-social">${D.social.map(s => `<a href="${esc(s[1])}" target="_blank" rel="noopener">${esc(s[0])}</a>`).join('')}</p>` : ''}${(PG.footLinks || []).length ? `<div class="foot-links">${PG.footLinks.map(x => /\./.test(x[1]) ? `<a href="${esc(x[1])}">${esc(x[0])}</a>` : `<button data-pginfo="${esc(x[1])}">${esc(x[0])}</button>`).join('')}</div>` : ''}</div>
   <div><h4>Showroom</h4><p>${esc(D.address)}</p><p style="margin-top:8px"><a class="link" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(D.mapsQuery || D.address)}" target="_blank" rel="noopener">Get directions →</a></p></div>
   <div><h4>Contact</h4><p class="num">${[D.phone, D.phoneAlt].filter(Boolean).map(esc).join(' / ')}</p>${D.mobile ? `<p class="num">${esc(D.mobile)} (WhatsApp)</p>` : ''}${D.email ? `<p>${esc(D.email)}</p>` : ''}</div>
   <div><h4>Trading hours</h4>${D.hours.map(x => `<p class="num">${esc(x[0])}: ${esc(x[1])}</p>`).join('')}${PG.footNote ? `<p class="foot-note">${esc(PG.footNote)}</p>` : ''}</div>`;
@@ -4768,7 +5195,7 @@ function formHTML(type, v){
   const btn = {service:'Request booking', parts:'Send parts enquiry', maintenance:'Get my quote', enquire:'Send enquiry', testdrive:'Request test drive', finance:'Submit application', tradein:'Get my valuation', viewing:'Request a viewing', contact:'Send message'}[type];
   return `<form class="form" data-type="${type}" ${v ? `data-vid="${esc(v.id)}"` : ''} novalidate>${pin}${body}
     <div class="consent">
-      <label><input type="checkbox" name="popia" required> <span>I consent to ${esc(D.name)} processing my personal information to respond to this request, in line with the Privacy Notice. <em style="color:var(--err);font-style:normal">*</em></span></label>
+      <label><input type="checkbox" name="popia" required> <span>I consent to ${esc(D.name)} processing my personal information to respond to this request, in line with the <a href="privacy.html" target="_blank" rel="noopener">Privacy Notice</a>. <em style="color:var(--err);font-style:normal">*</em></span></label>
       <label><input type="checkbox" name="marketing"> <span>Send me offers and news by email, SMS or WhatsApp. I can opt out at any time.</span></label>
     </div>
     <button class="btn pri submit" type="submit">${btn}</button>

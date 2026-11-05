@@ -878,6 +878,7 @@ main{padding-block:0 64px}
 .stock-head p,.pg-head p{margin:14px 0 0;font-size:16px;line-height:1.5;color:var(--muted);max-width:56ch}
 .stock-head .sh-r{display:flex;align-items:center;gap:14px}
 .stock-head .count{margin:0;padding:9px 15px;border:1px solid var(--line-strong);border-radius:999px;font-size:13px;font-weight:600;color:var(--ink);white-space:nowrap}
+.stock-head .count:empty{display:none}
 .pg-head{max-width:none}
 .pg-head p{max-width:62ch}
 @media (max-width:720px){.stock{padding-top:44px}.stock-head{grid-template-columns:1fr;gap:14px}.stock-head .sh-r{justify-content:flex-start}}
@@ -1560,7 +1561,7 @@ main{padding-block:0 64px}
       "mobileStickyBar": "pill"
     },
     "sectionCount": {
-      "show": true,
+      "show": false,
       "singular": "model",
       "plural": "models"
     }
@@ -1956,20 +1957,8 @@ main{padding-block:0 64px}
         }
       ],
       "text": "Zhai Auto is home to five brands in George, Western Cape. From city hatchbacks and family SUVs to hard-working bakkies and 4x4s, our team helps you choose the right car, arrange finance and keep it running at our own workshop.",
-      "facts": [
-        [
-          "5",
-          "brands"
-        ],
-        [
-          "auto",
-          "new models"
-        ],
-        [
-          "48 h",
-          "service booking confirmation"
-        ]
-      ]
+      "facts": [],
+      "showFacts": false
     },
     "visit": {
       "title": "Visit us in George",
@@ -4216,7 +4205,7 @@ if (PG.headerCta) { const b = $('#head-cta'); b.hidden = false; b.textContent = 
   panel.setAttribute('role', 'dialog'); panel.setAttribute('aria-modal', 'true'); panel.setAttribute('aria-label', 'Menu');
   panel.innerHTML = `<div class="mnav-top"><span class="mnav-logo"></span><button class="mnav-x" type="button" aria-label="Close menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
     <nav class="mnav-body" aria-label="Menu">
-      ${promos.map(x => big(x.label || x.title, '#' + x.id, x.vehicles.length ? x.vehicles.length + (x.layout === 'promo' ? ' offers' : '') : '')).join('')}
+      ${promos.map(x => big(x.label || x.title, '#' + x.id, x.vehicles.length && CNT.show ? x.vehicles.length + (x.layout === 'promo' ? ' offers' : '') : '')).join('')}
       ${brandSecs.length ? `<p class="mnav-lbl" style="--d:${d++}">Our brands</p><div class="mnav-brands" style="--d:${d++}">${brandSecs.map(x => { const b = logos[x.id], n = x.vehicles.length;
         return `<a href="#${esc(x.id)}">${b.logo ? `<img src="${IMG(b.logo)}" alt="" loading="lazy">` : ''}<span><b>${esc(x.label || b.name)}</b><small>${n} model${n === 1 ? '' : 's'}</small></span></a>`; }).join('')}</div>` : ''}
       ${rest.map(m => big(m[0], m[1])).join('')}
@@ -4261,7 +4250,7 @@ if (PG.headerCta) { const b = $('#head-cta'); b.hidden = false; b.textContent = 
 const SCENES = ((PG.hero || {}).scenes || []).filter(s => s && s.image);
 if (SCENES.length) {
   const H = PG.hero;
-  $('#pg-hero').innerHTML = `<section class="pg-story" style="height:${SCENES.length > 1 ? SCENES.length * 78 + 22 : 100}vh" aria-label="${esc(D.name)}">
+  $('#pg-hero').innerHTML = `<section class="pg-story" style="height:${SCENES.length > 1 ? SCENES.length * 78 + 100 : 100}vh" aria-label="${esc(D.name)}">
     <div class="pg-story-pin">
       <div class="pg-story-media">${SCENES.map((s, i) => `<div class="sc" data-i="${i}" style="--f:${esc(s.focus || '50% 50%')};--fm:${esc(s.focusMobile || s.focus || '50% 50%')}">${i ? LZ(s.image, 'site', 'alt=""') : `<img src="${SRC(s.image, 'site')}" data-orig="${IMG(s.image)}" alt="" fetchpriority="high">`}</div>`).join('')}</div>
       ${H.h1 ? `<h1 class="sr">${esc(H.h1)}</h1>` : ''}
@@ -4486,27 +4475,29 @@ function wireStory(){
     tick = false;
     const r = sec.getBoundingClientRect(), span = sec.offsetHeight - innerHeight;
     if (r.bottom < 0 || r.top > innerHeight) return;
-    const p = Math.min(1, Math.max(0, -r.top / Math.max(1, span))), raw = p * (n - 1);
-    const i = Math.min(n - 2, Math.floor(raw)), f = raw - i, t = ease(Math.min(1, Math.max(0, (f - HOLD) / (1 - HOLD))));
+    // 5 Nov 2026: every scene (the last one too) gets its own equal stretch of scroll, so the last scene
+    // no longer flashes in at the very end and only the current scene's progress bar fills
+    const p = Math.min(1, Math.max(0, -r.top / Math.max(1, span))), raw = Math.min(n - 1e-6, p * n);
+    const i = Math.min(n - 1, Math.floor(raw)), f = raw - i, t = i < n - 1 ? ease(Math.min(1, Math.max(0, (f - HOLD) / (1 - HOLD)))) : 0;
     sc.forEach((s, j) => {
-      const op = j === i ? 1 - t : j === i + 1 ? t : (raw >= n - 1 && j === n - 1 ? 1 : 0);
+      const op = j === i ? 1 - t : j === i + 1 ? t : 0;
       const local = Math.min(1, Math.max(0, (raw - j + 1) / 2));      // 0 → 1 across this scene's life
       s.style.opacity = j === 0 && raw <= 0 ? 1 : op;
       s.style.transform = `scale(${(1.07 - .07 * local).toFixed(4)})`;
     });
     tx.forEach((el, j) => {
-      const op = j === i ? Math.max(0, 1 - t / .45) : j === i + 1 ? Math.max(0, (t - .55) / .45) : (raw >= n - 1 && j === n - 1 ? 1 : 0);
+      const op = j === i ? Math.max(0, 1 - t / .45) : j === i + 1 ? Math.max(0, (t - .55) / .45) : 0;
       el.style.opacity = op; el.style.transform = `translateY(${((j === i + 1 ? 1 - t : j === i ? -t : 0) * 28).toFixed(1)}px)`;
     });
     show(t > .5 ? i + 1 : i);
-    dots.forEach((d, j) => d.style.setProperty('--p', Math.min(1, Math.max(0, raw - j + (j === n - 1 ? 1 : 0))).toFixed(3)));
+    dots.forEach((d, j) => d.style.setProperty('--p', (j === i ? Math.min(1, Math.max(0, f)) : 0).toFixed(3)));
     if (cue) cue.style.opacity = p > .02 ? 0 : 1;
   };
   addEventListener('scroll', () => { if (!tick) { tick = true; requestAnimationFrame(frame); } }, {passive:true});
   addEventListener('resize', frame); frame();
   dots.forEach((d, i) => d.addEventListener('click', () => {
     const span = sec.offsetHeight - innerHeight, top = sec.getBoundingClientRect().top + scrollY;
-    scrollTo({top: top + span * (i / (n - 1)) + (i ? 2 : 0), behavior:'smooth'});
+    scrollTo({top: top + span * (i / n) + (i ? 2 : 0), behavior:'smooth'});
   }));
 }
 function wireBannerVideos(){
@@ -4677,7 +4668,7 @@ function promoHTML(s, si, list){
   return `<section class="stock is-promo" id="${s.id}" data-detail="${esc(s.detailStyle || POP.detailStyle)}" aria-labelledby="h-${s.id}">
     <div class="stock-head">
       <div class="sh-l"><span class="eyb"><i aria-hidden="true"></i><b class="num">${pad(si + 1)}</b>${s.kicker ? `<span>${esc(s.kicker)}</span>` : ''}</span><h2 id="h-${s.id}">${esc(s.title)}</h2>${s.intro ? `<p>${esc(s.intro)}</p>` : ''}</div>
-      <div class="sh-r"><span class="count">${n} offer${n === 1 ? '' : 's'}</span>${n > 1 ? `<div class="rail-ctl"><button class="rail-btn" data-pr="-1" aria-label="Previous offer">${ic.l}</button><button class="rail-btn" data-pr="1" aria-label="Next offer">${ic.r}</button></div>` : ''}</div>
+      <div class="sh-r">${CNT.show ? `<span class="count">${n} offer${n === 1 ? '' : 's'}</span>` : ''}${n > 1 ? `<div class="rail-ctl"><button class="rail-btn" data-pr="-1" aria-label="Previous offer">${ic.l}</button><button class="rail-btn" data-pr="1" aria-label="Next offer">${ic.r}</button></div>` : ''}</div>
     </div>
     <div class="pr" role="region" aria-roledescription="carousel" aria-label="${esc(s.title)}">
       <div class="pr-track" tabindex="0" aria-live="off">${list.map((v, i) => promoSlide(v, i, n, s)).join('')}</div>

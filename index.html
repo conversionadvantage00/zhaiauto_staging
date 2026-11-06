@@ -378,6 +378,7 @@ input[type=range]{width:100%;accent-color:var(--ink);height:24px}
 .lead-success b{display:block;color:var(--ink);font-size:16px}
 .lead-success p{margin:4px 0 0;color:var(--ink);font-size:14px}
 .sending .submit{opacity:.6;pointer-events:none}
+.form-err{grid-column:1/-1;margin:0;font-size:14px;color:var(--err)}.form-err a{color:inherit;font-weight:600}
 
 .person{display:flex;gap:14px;align-items:center;margin-top:22px}
 .person .av{width:56px;height:56px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-weight:700;font-size:18px;flex:none}
@@ -1316,8 +1317,7 @@ main{padding-block:0 64px}
   finance on a vehicle overrides the dealer defaults for that car only.
   =====================================================================
 -->
-<script type="application/json" id="site-data">
-{
+<script type="application/json" id="site-data">{
   "mobileImages": {
     "cars/jeep-wrangler-sahara": "#b6a3a3",
     "cars/jeep-wrangler-rubicon": "#b6b6b6",
@@ -1564,6 +1564,18 @@ main{padding-block:0 64px}
       "show": false,
       "singular": "model",
       "plural": "models"
+    },
+    "forms": {
+      "_help": "Formspree form IDs (the part after formspree.io/f/). Groups: sales = enquire, test drive, viewing; finance; tradein; service = service, maintenance plan; parts; general = contact. uploads: true only on a paid plan with file uploads on.",
+      "endpoints": {
+        "sales": "mwllzjlb",
+        "finance": "mwllzjlb",
+        "tradein": "mwllzjlb",
+        "service": "mwllzjlb",
+        "parts": "mwllzjlb",
+        "general": "mwllzjlb"
+      },
+      "uploads": false
     }
   },
   "dealer": {
@@ -3799,8 +3811,7 @@ main{padding-block:0 64px}
       "extrasText": "Electric Windows, Air bags, LED lights, Rear-view camera, Aircon, Climate control, Apple CarPlay & Android Auto, Park distance control, Cruise control, ISOFIX, Radio, Sat nav, Leather seats"
     }
   ]
-}
-</script>
+}</script>
 
 <script>try{var __t=(JSON.parse(document.getElementById('site-data').textContent).theme)||{},__m=__t.mode;if(__t.toggle){try{__m=localStorage.getItem('ca-mode')||__m}catch(_){}}if(__m&&__m!=='light')document.documentElement.setAttribute('data-mode',__m)}catch(e){}</script>
 <div class="mock-note" id="mock-note" hidden=""></div>
@@ -5137,7 +5148,7 @@ function formHTML(type, v){
   if (type === 'finance') body = base +
     `<div class="fld"><label for="${P}emp">Employment status <em>*</em></label><select id="${P}emp" name="emp" required><option value="">Select</option><option>Permanently employed</option><option>Self-employed</option><option>Contract</option><option>Pensioner</option></select><div class="err"></div></div>
      <div class="fld"><label for="${P}dep">Deposit available</label><select id="${P}dep" name="dep"><option>None</option><option>Under R50,000</option><option>R50,000 – R100,000</option><option>Over R100,000</option></select></div>
-     <div class="fld full"><p class="note" style="margin:0">Document upload (ID, payslips, bank statements): to be decided. Placeholder until we settle how documents are collected.</p></div>`;
+     <div class="fld full"><p class="note" style="margin:0">Our finance team will contact you to collect your ID, latest payslips and bank statements securely. Please do not send documents through this form.</p></div>`;
   if (type === 'viewing') body = base +
     `<div class="fld full"><label for="${P}car">Car you'd like to see</label><select id="${P}car" name="car"><option value="">Not sure yet</option>${DATA.vehicles.map(x => `<option value="${esc(x.id)}" ${v && v.id === x.id ? 'selected' : ''}>${esc(x.year + ' ' + x.title + ' ' + x.sub)}</option>`).join('')}</select></div>
      <div class="fld"><label for="${P}date">Preferred date <em>*</em></label><input id="${P}date" name="date" type="date" required><div class="err"></div></div>
@@ -5149,7 +5160,7 @@ function formHTML(type, v){
      <div class="fld"><label for="${P}year">Year <em>*</em></label><input id="${P}year" name="year" inputmode="numeric" required><div class="err"></div></div>
      <div class="fld"><label for="${P}km">Mileage (km) <em>*</em></label><input id="${P}km" name="km" inputmode="numeric" required><div class="err"></div></div>
      <div class="fld"><label for="${P}fin2">Still financed?</label><select id="${P}fin2" name="financed"><option>No</option><option>Yes</option></select></div>
-     <div class="fld full"><label for="${P}photos">Photos of your car</label><input id="${P}photos" name="photos" type="file" accept="image/*" multiple style="padding-top:11px"></div>`;
+     ${FORMS.uploads ? `<div class="fld full"><label for="${P}photos">Photos of your car</label><input id="${P}photos" name="photos" type="file" accept="image/*" multiple style="padding-top:11px"></div>` : `<div class="fld full"><p class="note" style="margin:0">We may ask you for a few photos on WhatsApp once we have your details.</p></div>`}`;
   const btn = {service:'Request booking', parts:'Send parts enquiry', maintenance:'Get my quote', enquire:'Send enquiry', testdrive:'Request test drive', finance:'Submit application', tradein:'Get my valuation', viewing:'Request a viewing', contact:'Send message'}[type];
   return `<form class="form" data-type="${type}" ${v ? `data-vid="${esc(v.id)}"` : ''} novalidate>${pin}${body}
     <div class="consent">
@@ -5157,7 +5168,8 @@ function formHTML(type, v){
       <label><input type="checkbox" name="marketing"> <span>Send me offers and news by email, SMS or WhatsApp. I can opt out at any time.</span></label>
     </div>
     <button class="btn pri submit" type="submit">${btn}</button>
-    <p class="mock-flag">Mockup: nothing is sent. On success, a trackable element <code>#lead-success</code> is added to the page.</p>
+    <p class="form-err" role="alert" hidden></p>
+    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
   </form>`;
 }
 
@@ -5393,6 +5405,39 @@ function openFormDrawer(type, v){
 }
 
 /* ---------- forms ---------- */
+const FORMS = (DATA.settings && DATA.settings.forms) || {endpoints:{}};
+const FORM_GROUP = {enquire:'sales', testdrive:'sales', viewing:'sales', finance:'finance', tradein:'tradein', service:'service', maintenance:'service', parts:'parts', contact:'general'};
+const FORM_NAME = {enquire:'Vehicle enquiry', testdrive:'Test drive request', viewing:'Private viewing request', finance:'Finance application', tradein:'Trade-in valuation', service:'Service booking', maintenance:'Maintenance plan quote', parts:'Parts enquiry', contact:'General enquiry'};
+function leadPayload(form, type, v){
+  const fd = new FormData(), car = x => x ? `${x.year && !String(x.title).startsWith(String(x.year)) ? x.year + ' ' : ''}${x.title} ${x.sub}`.replace(/\s+/g, ' ').trim() : '';
+  const picked = $('[name="car"]', form), pv = picked && picked.value ? V[picked.value] : null, veh = v || pv;
+  const name = (($('[name="first"]', form) || {}).value || '').trim() + ' ' + (($('[name="last"]', form) || {}).value || '').trim();
+  const staging = /github\.io|localhost|^$/.test(location.hostname);
+  fd.append('_subject', (staging ? '[STAGING] ' : '') + FORM_NAME[type] + (veh ? ': ' + car(veh) + (veh.stock ? ' (' + veh.stock + ')' : '') : '') + ' – ' + name.trim());
+  fd.append('Form', FORM_NAME[type]);
+  $$('.fld', form).forEach(f => {
+    const els = $$('input,select,textarea', f).filter(e => e.name && e.type !== 'file'); if (!els.length) return;
+    const lab = $('label', f), label = lab ? lab.textContent.replace('*', '').trim() : els[0].name;
+    let val;
+    if (els[0].type === 'radio') { const c = els.find(e => e.checked); val = c ? c.value : ''; }
+    else if (els[0].name === 'car') val = pv ? car(pv) + (pv.stock ? ' (stock ' + pv.stock + ')' : '') : 'Not sure yet';
+    else val = els[0].value.trim();
+    if (!val) return;
+    fd.append(els[0].name === 'email' ? 'email' : label, val);
+  });
+  if (veh) {
+    if (v) fd.append('Vehicle', car(veh));
+    if (veh.stock) fd.append('Stock no.', veh.stock);
+    fd.append('Condition', {new:'New', demo:'Demo', used:'Pre-owned'}[veh.condition] || veh.condition || '');
+    fd.append('Price', priceText(veh).replace(/<[^>]*>/g, ''));
+  }
+  fd.append('Page', location.href.split('#')[0] + (veh ? '#v-' + veh.slug : ''));
+  fd.append('POPIA consent', 'Yes');
+  fd.append('Marketing opt-in', $('[name="marketing"]', form).checked ? 'Yes' : 'No');
+  fd.append('_gotcha', ($('[name="_gotcha"]', form) || {}).value || '');
+  if (FORMS.uploads) $$('input[type="file"]', form).forEach(i => [...i.files].forEach(f => fd.append(i.name, f)));
+  return fd;
+}
 function wireForm(form){
   form.addEventListener('submit', e => {
     e.preventDefault();
@@ -5408,8 +5453,19 @@ function wireForm(form){
       if (msg) { ok = false; const f = inp.closest('.fld'); f.classList.add('bad'); $('.err', f).textContent = msg; }
     });
     if (!ok) { const first = $('.bad input, .bad select, label.bad input', form); first && first.focus(); return; }
-    form.classList.add('sending'); $('.submit', form).textContent = 'Sending…';
-    setTimeout(() => {
+    const btn = $('.submit', form), btnText = btn.textContent, errBox = $('.form-err', form);
+    form.classList.add('sending'); btn.textContent = 'Sending…'; if (errBox) errBox.hidden = true;
+    const type = form.dataset.type, v = form.dataset.vid ? V[form.dataset.vid] : null;
+    const id = (FORMS.endpoints || {})[FORM_GROUP[type] || 'general'];
+    const fail = () => {
+      form.classList.remove('sending'); btn.textContent = btnText;
+      if (errBox) { errBox.innerHTML = `Sorry, your message didn't go through. Please try again, call <a href="tel:${esc(D.phone.replace(/\s/g,''))}">${esc(D.phone)}</a> or <a href="${waLink(v)}" target="_blank" rel="noopener">WhatsApp us</a>.`; errBox.hidden = false; }
+      (window.dataLayer = window.dataLayer || []).push({event:'lead_error', lead_type:type});
+    };
+    if (!id) return fail();
+    fetch('https://formspree.io/f/' + id, {method:'POST', body: leadPayload(form, type, v), headers:{Accept:'application/json'}})
+      .then(r => r.ok ? done() : fail()).catch(fail);
+    function done(){
       const type = form.dataset.type, v = form.dataset.vid ? V[form.dataset.vid] : null;
       const name = $('[name="first"]', form).value.trim();
       const thanks = {service:'Thanks, ' + name + '. A service advisor will confirm your booking.', parts:'Thanks, ' + name + '. Our parts team will come back to you with price and availability.', maintenance:'Thanks, ' + name + '. We\'ll send your maintenance plan quote.', enquire:'Thanks, ' + name + '. Your enquiry is with our sales team.', testdrive:'Thanks, ' + name + '. We\'ll confirm your test drive shortly.', finance:'Thanks, ' + name + '. Our finance team will be in touch.', tradein:'Thanks, ' + name + '. We\'ll send your valuation soon.', viewing:'Thanks, ' + name + '. We\'ll confirm your viewing shortly.', contact:'Thanks, ' + name + '. We\'ll be in touch soon.'}[type];
@@ -5417,7 +5473,7 @@ function wireForm(form){
       const old = document.getElementById('lead-success'); old && old.removeAttribute('id');
       form.outerHTML = `<div class="form"><div class="lead-success" id="lead-success" role="status" data-lead-type="${type}" data-vehicle="${esc(v ? v.slug : '')}" data-stock="${esc(v ? v.stock : '')}">${ic.ok}<div><b>${esc(thanks)}</b><p>We usually reply within one business hour.${v && v.stock ? ' Reference: ' + esc(v.stock) : ''}</p></div></div></div>`;
       (window.dataLayer = window.dataLayer || []).push(Object.assign({event:'lead_success', lead_type:type}, v ? {vehicle:v.slug, stock:v.stock, condition:v.condition, price:v.price} : {}));
-    }, 900);
+    }
   });
   $$('input,select', form).forEach(i => i.addEventListener('input', () => { const f = i.closest('.fld'); f && f.classList.remove('bad'); const l = i.closest('label'); l && l.classList.remove('bad'); }));
 }

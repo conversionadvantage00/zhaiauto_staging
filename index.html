@@ -1,10 +1,19 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<!doctype html><html><head><meta charset=utf8>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W35G996R');</script>
+<!-- End Google Tag Manager -->
+<meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
 <title>Zhai Auto George | Peugeot, Citroën, Opel, Jeep &amp; Fiat</title>
 <meta name="description" content="New Peugeot, Citroën, Opel, Jeep and Fiat cars, current specials, service, parts and finance at Zhai Auto, 78 York Street, George.">
 <meta name="theme-color" content="#f4f4f2">
 <link rel="icon" href="img/meta/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="img/meta/favicon-32.png">
 <link rel="apple-touch-icon" href="img/meta/apple-touch-icon.png">
+<meta name="robots" content="noindex,nofollow">
 <link rel="canonical" href="https://conversionadvantage00.github.io/zhaiauto_staging/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Zhai Auto">
@@ -24,6 +33,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..800&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap">
 </head><body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W35G996R"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <style>
 /* Layout: one-page dealer microsite; full-bleed card rails per stock section; vehicle popup = Polestar-style two-column takeover (pinned gallery left, scrolling detail right) */
 :root{
@@ -1576,6 +1589,10 @@ main{padding-block:0 64px}
         "general": "mwllzjlb"
       },
       "uploads": false
+    },
+    "tracking": {
+      "_help": "Google Tag Manager container ID. The same ID must also be in the GTM snippet in <head> and in privacy.html. dataLayer events: see TRACKING-PLAN.md.",
+      "gtmId": "GTM-W35G996R"
     }
   },
   "dealer": {
@@ -4947,6 +4964,7 @@ function openVehicle(id, fromHash, mode){
   if (!open) { vp.classList.toggle('sheet', curMode === 'sheet'); vp.style.transform = ''; }
   if (curMode === 'sheet' && !open) { const s = $('#vp-scrim'); s.hidden = false; requestAnimationFrame(() => s.classList.add('on')); }
   cur = v; terms = termsFor(v);
+  track('vehicle_view', trkVeh(v));
   const m = content(v), sec = SEC_OF[id];
   $('#vp-sec').textContent = sec ? sec.label : 'Vehicles';
   $('#vp-crumb').textContent = 'Vehicle details';
@@ -5321,6 +5339,7 @@ function openInline(sec, id){
   $$('.card.is-open', sec).forEach(c => c.classList.remove('is-open'));
   if (already) { closeInline(sec); return; }
   cur = v; terms = termsFor(v);
+  track('vehicle_view', trkVeh(v));
   clip.innerHTML = inlineHTML(v); wrap.dataset.id = id; lzAll(clip);
   $$('.card[data-id="' + id + '"]', sec).forEach(c => c.classList.add('is-open'));
   requestAnimationFrame(() => wrap.classList.add('open'));
@@ -5400,9 +5419,38 @@ function openSpecs(v, m, key){
   openDrawer(v.title, tabs, Math.max(0, tabs.findIndex(t => t.key === key)));
 }
 function openFormDrawer(type, v){
+  track('form_open', Object.assign({form_type: type, lead_group: FORM_GROUP[type]}, trkVeh(v)));
   const titles = {service:'Book a service', parts:'Genuine parts enquiry', maintenance:'Maintenance plan quote', enquire:'Enquire about this vehicle', testdrive:'Book a test drive', finance:'Apply for finance', tradein:'Value my trade-in', viewing:'Book a private viewing', contact:'Send us a message'};
   openDrawer(titles[type], [{label:'', html: formHTML(type, v), after: () => $$('#dr-body form').forEach(wireForm)}], 0);
 }
+
+/* ---------- tracking (dataLayer for GTM; no personal details are ever pushed) ---------- */
+const track = (event, params) => { try { (window.dataLayer = window.dataLayer || []).push(Object.assign({event}, params || {})); } catch(_) {} };
+const trkVeh = v => v ? {vehicle: v.slug, vehicle_name: `${v.year && !String(v.title).startsWith(String(v.year)) ? v.year + ' ' : ''}${v.title} ${v.sub}`.replace(/\s+/g, ' ').trim(), vehicle_make: v.make || '', stock: v.stock || '', condition: v.condition || '', price: v.price || 0, section: (SEC_OF[v.id] || {}).id || ''} : {};
+const trkLoc = el => el.closest('#vp') ? 'vehicle_popup' : el.closest('.inl') ? 'vehicle_inline' : el.closest('#drawer') ? 'drawer' : el.closest('#mnav') ? 'mobile_menu' : el.closest('.site-head') ? 'header' : el.closest('.foot') ? 'footer' : el.closest('.fab-wa, .fab-enq') ? 'floating_button' : el.closest('.pg-hero, .pg-story') ? 'hero' : ((el.closest('section[id]') || {}).id || 'page');
+const trkOnce = new Set();
+document.addEventListener('click', e => {
+  const el = e.target.closest('a, button'); if (!el) return;
+  const loc = trkLoc(el), inPop = /^(vehicle_popup|vehicle_inline|drawer)$/.test(loc), veh = inPop ? trkVeh(cur) : {}, href = el.getAttribute('href') || '';
+  if (/^tel:/.test(href)) return track('click_call', Object.assign({click_location: loc}, veh));
+  if (/wa\.me|whatsapp/i.test(href)) return track('click_whatsapp', Object.assign({click_location: loc}, veh));
+  if (/^mailto:/.test(href)) return track('click_email', Object.assign({click_location: loc}, veh));
+  if (/google\.[a-z.]+\/maps|maps\.app\.goo|maps\.google/.test(href)) return track('click_directions', {click_location: loc});
+  if (el.dataset.spot && V[el.dataset.spot]) return track('special_click', Object.assign({click_location: loc}, trkVeh(V[el.dataset.spot])));
+  if (el.dataset.pginfo) return track('info_open', {info_topic: el.dataset.pginfo, click_location: loc});
+  if (el.id === 'vp-share') return track('share_vehicle', trkVeh(cur));
+  if (el.dataset.lb !== undefined || el.dataset.lbAng !== undefined) return track('gallery_open', trkVeh(cur));
+  if (/^#[a-z]/i.test(href) && !/^#v-/.test(href)) return track('nav_click', {link_text: el.textContent.trim().slice(0, 60), link_target: href.slice(1), click_location: loc});
+}, true);
+document.addEventListener('input', e => {
+  if (!e.target.matches || !e.target.matches('#vp input[type="range"], #vp select, .inl input[type="range"], .inl select') || e.target.closest('form') || !cur) return;
+  if (trkOnce.has('calc-' + cur.id)) return; trkOnce.add('calc-' + cur.id);
+  track('finance_calculator', trkVeh(cur));
+}, true);
+if ('IntersectionObserver' in window) requestAnimationFrame(() => {
+  const io = new IntersectionObserver(es => es.forEach(x => { if (!x.isIntersecting) return; io.unobserve(x.target); track('section_view', {section_id: x.target.id}); }), {rootMargin: '0px 0px -35% 0px'});
+  $$('section[id]').forEach(sec => { if (!sec.closest('#vp, #drawer')) io.observe(sec); });
+});
 
 /* ---------- forms ---------- */
 const FORMS = (DATA.settings && DATA.settings.forms) || {endpoints:{}};
@@ -5439,6 +5487,8 @@ function leadPayload(form, type, v){
   return fd;
 }
 function wireForm(form){
+  const startOnce = () => { if (form.dataset.started) return; form.dataset.started = '1'; const t = form.dataset.type, fv = form.dataset.vid ? V[form.dataset.vid] : null; track('form_start', Object.assign({form_type: t, lead_group: FORM_GROUP[t]}, trkVeh(fv))); };
+  form.addEventListener('focusin', startOnce); form.addEventListener('change', startOnce);
   form.addEventListener('submit', e => {
     e.preventDefault();
     let ok = true;
@@ -5457,10 +5507,11 @@ function wireForm(form){
     form.classList.add('sending'); btn.textContent = 'Sending…'; if (errBox) errBox.hidden = true;
     const type = form.dataset.type, v = form.dataset.vid ? V[form.dataset.vid] : null;
     const id = (FORMS.endpoints || {})[FORM_GROUP[type] || 'general'];
+    const leadVeh = () => { const c = $('[name="car"]', form); return v || (c && c.value ? V[c.value] : null); };
     const fail = () => {
       form.classList.remove('sending'); btn.textContent = btnText;
       if (errBox) { errBox.innerHTML = `Sorry, your message didn't go through. Please try again, call <a href="tel:${esc(D.phone.replace(/\s/g,''))}">${esc(D.phone)}</a> or <a href="${waLink(v)}" target="_blank" rel="noopener">WhatsApp us</a>.`; errBox.hidden = false; }
-      (window.dataLayer = window.dataLayer || []).push({event:'lead_error', lead_type:type});
+      track('lead_error', Object.assign({lead_type: type, form_type: type, lead_group: FORM_GROUP[type]}, trkVeh(leadVeh())));
     };
     if (!id) return fail();
     fetch('https://formspree.io/f/' + id, {method:'POST', body: leadPayload(form, type, v), headers:{Accept:'application/json'}})
@@ -5472,7 +5523,7 @@ function wireForm(form){
       // Trackable success element: only exists after a confirmed submission.
       const old = document.getElementById('lead-success'); old && old.removeAttribute('id');
       form.outerHTML = `<div class="form"><div class="lead-success" id="lead-success" role="status" data-lead-type="${type}" data-vehicle="${esc(v ? v.slug : '')}" data-stock="${esc(v ? v.stock : '')}">${ic.ok}<div><b>${esc(thanks)}</b><p>We usually reply within one business hour.${v && v.stock ? ' Reference: ' + esc(v.stock) : ''}</p></div></div></div>`;
-      (window.dataLayer = window.dataLayer || []).push(Object.assign({event:'lead_success', lead_type:type}, v ? {vehicle:v.slug, stock:v.stock, condition:v.condition, price:v.price} : {}));
+      track('lead_success', Object.assign({lead_type: type, form_type: type, lead_group: FORM_GROUP[type], marketing_opt_in: ($('[name="marketing"]', form) || {}).checked ? 'yes' : 'no'}, trkVeh(leadVeh())));
     }
   });
   $$('input,select', form).forEach(i => i.addEventListener('input', () => { const f = i.closest('.fld'); f && f.classList.remove('bad'); const l = i.closest('label'); l && l.classList.remove('bad'); }));

@@ -1,11 +1,55 @@
 <!doctype html><html lang="en-ZA"><head><meta charset=utf8>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-W35G996R');</script>
-<!-- End Google Tag Manager -->
+<!-- cookie consent (consent-banner-kit v1.0): must stay the first thing in <head>. Sets consent to "denied", then loads Tag Manager itself, so Google's own GTM snippet must NOT be added. -->
+<script data-consent="config">
+window.cookieConsentConfig = {
+  gtmId: 'GTM-W35G996R',                   // the site's Tag Manager container. '' = this code does not load Tag Manager
+  liveHosts: ['zhaiauto.co.za'],          // Tag Manager loads only on these addresses (www. is included). [] = load everywhere
+  privacyUrl: 'privacy.html',              // where "privacy policy" in the banner goes. '' = no link
+  position: 'left',                        // 'left', 'right' or 'center' (phones always get a full-width card at the bottom)
+  days: 180,                               // how long a choice is remembered before the banner asks again
+  storageKey: 'cookie-consent',            // name the choice is saved under in the visitor's browser
+  eventName: 'cookie_consent_update',      // dataLayer event sent when a choice is made (for a Tag Manager trigger)
+  delay: 1200,                             // milliseconds before the banner appears on a first visit
+  text: {}                                 // optional wording changes, see README ("changing the wording")
+};
+</script>
+<script data-consent="core">
+/* cookie consent core, v1.0. Sets Google Consent Mode v2 to "denied" before anything else runs, re-applies a saved choice, then loads Tag Manager. */
+(function (w, d) {
+  var cfg = w.cookieConsentConfig || {}, KEY = cfg.storageKey || 'cookie-consent', LIFE = (cfg.days || 180) * 864e5,
+      EVT = cfg.eventName || 'cookie_consent_update', g = function (b) { return b ? 'granted' : 'denied'; };
+  w.dataLayer = w.dataLayer || [];
+  function gtag() { w.dataLayer.push(arguments); }
+  w.gtag = w.gtag || gtag;
+  gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied',
+    personalization_storage: 'denied', functionality_storage: 'granted', security_storage: 'granted', wait_for_update: 500 });
+  gtag('set', 'ads_data_redaction', true);
+  function send(c) { gtag('consent', 'update', { analytics_storage: g(c.a), ad_storage: g(c.m), ad_user_data: g(c.m), ad_personalization: g(c.m) }); }
+  var c = null;
+  try { c = JSON.parse(localStorage.getItem(KEY)); if (!c || c.v !== 1 || !(Date.now() - c.t < LIFE)) c = null; } catch (e) { c = null; }
+  if (c) send(c);
+  w.cookieConsent = {
+    config: cfg,
+    get: function () { return c; },
+    set: function (a, m) {
+      c = { v: 1, a: a ? 1 : 0, m: m ? 1 : 0, t: Date.now() };
+      try { localStorage.setItem(KEY, JSON.stringify(c)); } catch (e) {}
+      send(c);
+      w.dataLayer.push({ event: EVT, consent_analytics: g(c.a), consent_marketing: g(c.m) });
+      return c;
+    }
+  };
+  w.dataLayer.push({ consent_analytics: g(c && c.a), consent_marketing: g(c && c.m), consent_chosen: !!c });
+  var id = /^GTM-[A-Z0-9]+$/.test(cfg.gtmId || '') ? cfg.gtmId : '', hosts = cfg.liveHosts || [], host = location.hostname.replace(/^www\./, ''), live = !hosts.length;
+  for (var i = 0; i < hosts.length; i++) if (String(hosts[i]).replace(/^www\./, '') === host) live = true;
+  if (id && (live || /[?&]gtm_debug=/.test(location.search))) {
+    w.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+    var f = d.getElementsByTagName('script')[0], j = d.createElement('script');
+    j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + id; f.parentNode.insertBefore(j, f);
+  }
+})(window, document);
+</script>
+<!-- end cookie consent -->
 <meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
 <title>Zhai Auto George | Peugeot, Citroën, Opel, Jeep &amp; Fiat</title>
 <meta name="description" content="New, demo and pre-owned Peugeot, Citroën, Opel, Jeep and Fiat cars in George. Specials, finance, service and parts at Zhai Auto, 78 York Street.">
@@ -31,10 +75,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:image" content="https://conversionadvantage00.github.io/zhaiauto_staging/img/meta/social.jpg">
 <link rel="preload" href="img/fonts/hanken-grotesk-var.woff2" as="font" type="font/woff2" crossorigin="">
 </head><body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W35G996R"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
 <style>
 /* round 10: fonts are self-hosted (latin subset, variable): Archivo wght 400-800 x wdth 100-125, Hanken Grotesk wght 400-700. OFL licences in img/fonts. */
 @font-face{font-family:"Archivo";font-style:normal;font-weight:400 800;font-stretch:100% 125%;font-display:swap;src:url(img/fonts/archivo-var.woff2) format("woff2")}
@@ -1046,6 +1086,9 @@ main{padding-block:0 64px}
 .wa-float{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:45;width:56px;height:56px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;box-shadow:0 12px 30px -10px rgba(0,0,0,.6);transition:transform .3s cubic-bezier(.2,.8,.2,1),bottom .3s}
 .wa-float svg{width:28px;height:28px}
 .wa-float.away{transform:scale(0)}
+/* cookie banner (consent-banner-kit, img/consent/): the site's fonts, colours and corners; on phones the WhatsApp button steps aside while it is open */
+html .cc{--cc-font:var(--font);--cc-title-font:var(--display);--cc-title-weight:700;--cc-text:var(--ink);--cc-accent:var(--accent);--cc-radius:var(--r-card);--cc-button-radius:999px}
+@media (max-width:560px){html.cc-open .wa-float{transform:scale(0);pointer-events:none}}
 .ctray.on ~ .wa-float{bottom:calc(90px + env(safe-area-inset-bottom,0px))}
 
 /* ---------- round 7: offer banners (section layout "promo") ---------- */
@@ -1632,7 +1675,7 @@ main{padding-block:0 64px}
       "uploads": true
     },
     "tracking": {
-      "_help": "Google Tag Manager container ID. The same ID must also be in the GTM snippet in <head> and in privacy.html. dataLayer events: see TRACKING-PLAN.md.",
+      "_help": "Google Tag Manager container ID. The cookie banner's head snippet (first thing in <head>, also in privacy.html) loads this container after setting consent; Google's own GTM snippet must not be added. dataLayer events: see TRACKING-PLAN.md.",
       "gtmId": "GTM-W35G996R",
       "metaPixelId": "2200976354120255",
       "metaPixelHosts": [
@@ -2027,6 +2070,10 @@ main{padding-block:0 64px}
       [
         "Privacy notice",
         "privacy.html"
+      ],
+      [
+        "Cookie settings",
+        "cookies"
       ]
     ],
     "info": {
@@ -4546,6 +4593,9 @@ main{padding-block:0 64px}
 
 <div class="tipbox" id="tipbox" role="tooltip" hidden=""></div>
 <a class="wa-float" id="wa-float" hidden="" target="_blank" rel="noopener" aria-label="Chat to us on WhatsApp"></a>
+<!-- cookie banner: the kit's two files, unedited (settings are in the head snippet) -->
+<link rel="stylesheet" href="img/consent/consent-banner.css?v=1.0">
+<script src="img/consent/consent-banner.js?v=1.0" defer></script>
 
 <script>
 /* round 9: ownership promises reveal and count up when they scroll into view
@@ -4642,7 +4692,7 @@ function prelaunchCheck(data){
     ((pg.hero || {}).scenes || []).forEach((s, i) => { if (!s.image) add(W, `hero scene ${i + 1} has no image`); if (!s.title) add(W, `hero scene ${i + 1} has no title`); if (s.vehicle && !vIds.has(s.vehicle)) add(W, `hero scene ${i + 1} opens car "${s.vehicle}", which is not in the stock list`); });
     ((pg.brands || {}).items || []).forEach((x, i) => { if (!x.logo) add(W, `brand ${i + 1} (${x.name || 'no name'}) has no logo`); if (x.href && x.href[0] === '#' && x.href.length > 1 && !secIds.has(x.href.slice(1))) add(W, `brand ${x.name} links to "${x.href}", which is not a section`); });
     const infoKeys = new Set(Object.keys(pg.info || {}));
-    [...((pg.services || {}).items || []).filter(x => x.info).map(x => x.info), ...(pg.footLinks || []).map(x => x[1]).filter(k => !/\./.test(k))].forEach(k => { if (!infoKeys.has(k)) add(W, `link to owner info page "${k}", which doesn't exist`); });
+    [...((pg.services || {}).items || []).filter(x => x.info).map(x => x.info), ...(pg.footLinks || []).map(x => x[1]).filter(k => !/\./.test(k) && k !== 'cookies')].forEach(k => { if (!infoKeys.has(k)) add(W, `link to owner info page "${k}", which doesn't exist`); });
   }
   if (!(data.dealer.finance && data.dealer.finance.confirmed)) add('Finance defaults', 'finance terms not confirmed for this client (set "confirmed": true once checked)');
   if (data.meta && data.meta.master) add('Template', 'this is the master template: export a working copy and build from that');
@@ -5082,7 +5132,7 @@ function featureHTML(v, b, s){
 /* footer */
 $('#foot').innerHTML = `
   <div id="contact" class="foot-brand">${D.logo ? `<img src="${IMG(D.logo)}" alt="${esc(D.name)}">` : `<h4>${esc(D.name)}</h4>`}<p>${esc(D.tagline || '')}</p>
-    ${(D.social || []).length ? `<p class="foot-social">${D.social.map(s => `<a href="${esc(s[1])}" target="_blank" rel="noopener">${esc(s[0])}</a>`).join('')}</p>` : ''}${(PG.footLinks || []).length ? `<div class="foot-links">${PG.footLinks.map(x => /\./.test(x[1]) ? `<a href="${esc(x[1])}">${esc(x[0])}</a>` : `<button data-pginfo="${esc(x[1])}">${esc(x[0])}</button>`).join('')}</div>` : ''}</div>
+    ${(D.social || []).length ? `<p class="foot-social">${D.social.map(s => `<a href="${esc(s[1])}" target="_blank" rel="noopener">${esc(s[0])}</a>`).join('')}</p>` : ''}${(PG.footLinks || []).length ? `<div class="foot-links">${PG.footLinks.map(x => x[1] === 'cookies' ? `<button type="button" data-consent-open>${esc(x[0])}</button>` : /\./.test(x[1]) ? `<a href="${esc(x[1])}">${esc(x[0])}</a>` : `<button data-pginfo="${esc(x[1])}">${esc(x[0])}</button>`).join('')}</div>` : ''}</div>
   <div><h4>Showroom</h4><p>${esc(D.address)}</p><p style="margin-top:8px"><a class="link" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(D.mapsQuery || D.address)}" target="_blank" rel="noopener">Get directions →</a></p></div>
   <div><h4>Contact</h4><p class="num">${[D.phone, D.phoneAlt].filter(Boolean).map(esc).join(' / ')}</p>${D.mobile ? `<p class="num">${esc(D.mobile)} (WhatsApp)</p>` : ''}${D.email ? `<p>${esc(D.email)}</p>` : ''}</div>
   <div><h4>Trading hours</h4>${D.hours.map(x => `<p class="num">${esc(x[0])}: ${esc(x[1])}</p>`).join('')}${PG.footNote ? `<p class="foot-note">${esc(PG.footNote)}</p>` : ''}</div>`;
@@ -6141,17 +6191,25 @@ function openFormDrawer(type, v){
 }
 
 /* ---------- tracking (dataLayer for GTM; no personal details are ever pushed) ---------- */
-/* Meta Pixel (17 Nov 2026): built in, so do NOT also add it in GTM. Loads only on the hosts in settings.tracking.metaPixelHosts
+/* Meta Pixel (17 Nov 2026): built in, so do NOT also add it in GTM. Since 24 Nov 2026 it waits for advertising consent (see below). Loads only on the hosts in settings.tracking.metaPixelHosts
    (the live site), never on staging or local files. PageView on load; ViewContent when a car opens; Lead when a form is sent;
    Contact on a phone or WhatsApp tap. No names, emails or phone numbers are sent. */
 const PIXEL = (() => { const t = (DATA.settings || {}).tracking || {}, id = String(t.metaPixelId || '');
   return /^\d{8,20}$/.test(id) && (t.metaPixelHosts || []).includes(location.hostname) ? id : ''; })();
-if (PIXEL) { try {
+/* Cookie banner (24 Nov 2026): the pixel is not in GTM, so the banner cannot hold it back by itself. It loads only once the visitor
+   allows advertising (now, or from a saved choice), and is revoked if they later decline. No banner on the page = no pixel. */
+let pixelOn = false;
+const pixelStart = () => { if (!PIXEL || pixelOn) return; pixelOn = true; try {
+  if (window.fbq) { fbq('consent', 'grant'); return; }
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
   if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;
   s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', PIXEL); fbq('track', 'PageView'); } catch(_) {} }
-const pixelTrack = (event, p) => { if (!PIXEL || !window.fbq) return; try {
+  fbq('init', PIXEL); fbq('track', 'PageView'); } catch(_) {} };
+const pixelStop = () => { if (!pixelOn) return; pixelOn = false; try { fbq('consent', 'revoke'); } catch(_) {} };
+(cc => { if (!cc) return; const c = cc.get(), set0 = cc.set;
+  cc.set = function (a, m) { const r = set0.apply(cc, arguments); m ? pixelStart() : pixelStop(); return r; };
+  if (c && c.m) pixelStart(); })(window.cookieConsent);
+const pixelTrack = (event, p) => { if (!PIXEL || !pixelOn || !window.fbq) return; try {
   if (event === 'vehicle_view') fbq('track', 'ViewContent', {content_ids: [p.stock || p.vehicle], content_type: 'vehicle', content_name: p.vehicle_name, content_category: p.condition, value: p.price || 0, currency: 'ZAR'});
   else if (event === 'lead_success') fbq('track', 'Lead', {content_name: p.vehicle_name || p.form_type, content_category: p.lead_group});
   else if (event === 'click_call' || event === 'click_whatsapp') fbq('track', 'Contact', {content_category: event === 'click_call' ? 'call' : 'whatsapp', content_name: p.click_location || ''});

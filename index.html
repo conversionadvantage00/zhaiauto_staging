@@ -2373,6 +2373,7 @@ html .cc{--cc-font:var(--font);--cc-title-font:var(--display);--cc-title-weight:
       "transmission": "Automatic",
       "fuel": "Petrol",
       "price": 386500,
+      "hidePrice": true,
       "priceMode": "fixed",
       "images": [
         "cars/citroen-aircross-max-0",
@@ -2444,6 +2445,7 @@ html .cc{--cc-font:var(--font);--cc-title-font:var(--display);--cc-title-weight:
       "transmission": "Automatic",
       "fuel": "Petrol",
       "price": 317900,
+      "hidePrice": true,
       "priceMode": "fixed",
       "images": [
         "cars/citroen-c3-max-at-0",
@@ -2514,6 +2516,7 @@ html .cc{--cc-font:var(--font);--cc-title-font:var(--display);--cc-title-weight:
       "transmission": "Automatic",
       "fuel": "Petrol",
       "price": 369900,
+      "hidePrice": true,
       "priceMode": "fixed",
       "images": [
         "cars/citroen-basalt-max-0",
@@ -2561,8 +2564,8 @@ html .cc{--cc-font:var(--font);--cc-title-font:var(--display);--cc-title-weight:
       "promo": {
         "style": "split-rev",
         "image": "site/special-dec26-landtrek",
-        "focus": "50% 55%",
-        "focusMobile": "50% 58%",
+        "focus": "50% 62%",
+        "focusMobile": "50% 62%",
         "tint": "#ecebe8",
         "kicker": "Peugeot",
         "title": "Peugeot Landtrek",
@@ -2595,8 +2598,8 @@ html .cc{--cc-font:var(--font);--cc-title-font:var(--display);--cc-title-weight:
       "promo": {
         "style": "split",
         "image": "site/special-dec26-landtrek",
-        "focus": "50% 55%",
-        "focusMobile": "50% 58%",
+        "focus": "50% 62%",
+        "focusMobile": "50% 62%",
         "tint": "#e8ecef",
         "badge": "R30 000 accessories included",
         "kicker": "Peugeot",
@@ -2714,7 +2717,7 @@ html .cc{--cc-font:var(--font);--cc-title-font:var(--display);--cc-title-weight:
         "note": "R799 900 retail",
         "text": "Panoramic sunroof and wireless Apple CarPlay and Android Auto.",
         "terms": "Price shown includes the maximum deal assistance of R170 000. Includes a 5-year/105 000 km maintenance plan and a 5-year/100 000 km warranty. Ts and Cs apply. While stocks last.",
-        "key": "48-month Guaranteed Future Value | Available subject to finance approval"
+        "key": "48-month Guaranteed Future Value | 0% deposit, 57% guaranteed future value, 7.64% linked interest rate"
       }
     },
     {
@@ -2730,6 +2733,7 @@ html .cc{--cc-font:var(--font);--cc-title-font:var(--display);--cc-title-weight:
       "transmission": "Automatic",
       "fuel": "Petrol",
       "price": 1315900,
+      "hidePrice": true,
       "priceMode": "fixed",
       "images": [
         "cars/jeep-wrangler-sahara-0",
@@ -3536,6 +3540,7 @@ html .cc{--cc-font:var(--font);--cc-title-font:var(--display);--cc-title-weight:
       "transmission": "Automatic",
       "fuel": "Petrol",
       "price": 317900,
+      "hidePrice": true,
       "priceMode": "fixed",
       "images": [
         "cars/citroen-c3-max-at-0",
@@ -3558,6 +3563,7 @@ html .cc{--cc-font:var(--font);--cc-title-font:var(--display);--cc-title-weight:
       "transmission": "Automatic",
       "fuel": "Petrol",
       "price": 386500,
+      "hidePrice": true,
       "priceMode": "fixed",
       "images": [
         "cars/citroen-aircross-max-0",
@@ -3602,6 +3608,7 @@ html .cc{--cc-font:var(--font);--cc-title-font:var(--display);--cc-title-weight:
       "transmission": "Automatic",
       "fuel": "Petrol",
       "price": 369900,
+      "hidePrice": true,
       "priceMode": "fixed",
       "images": [
         "cars/citroen-basalt-max-0",
@@ -3645,6 +3652,7 @@ html .cc{--cc-font:var(--font);--cc-title-font:var(--display);--cc-title-weight:
       "transmission": "Automatic",
       "fuel": "Petrol",
       "price": 1315900,
+      "hidePrice": true,
       "priceMode": "fixed",
       "images": [
         "cars/jeep-wrangler-sahara-0",
@@ -4810,7 +4818,7 @@ const R = (n, cents=false) => {
 const condLabel = c => ({new:'New', demo:'Demo', used:'Pre-owned'})[c];
 const isPOA = v => v.priceMode === 'poa';
 /* Dec 2026: PR = price with the car's own label (v.priceNote, e.g. "excl. VAT"); hasPrice is false for a fixed offer whose retail price is not known yet */
-const hasPrice = v => !isPOA(v) && v.price > 0;
+const hasPrice = v => !isPOA(v) && v.price > 0 && !v.hidePrice;   // hidePrice (Dec 2026): an instalment-led offer shows its instalment only, everywhere
 const PR = v => R(v.price) + (v.priceNote ? ' ' + v.priceNote : '');
 const priceNoteFor = v => v && v.priceNote ? 'Price ' + v.priceNote + '. ' + String(D.priceNote).replace(/^[^.]*incl\. VAT\.\s*/i, '') : D.priceNote;
 const priceText = v => isPOA(v) ? 'Price on request' : hasPrice(v) ? PR(v) : monthlyOf(v) != null ? R(monthlyOf(v)) + ' pm' : 'Price on request';
@@ -4855,7 +4863,7 @@ const SVC_IC = {
   maintenance:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>'
 };
 const cLink = v => PAGES ? `<a class="c-link" href="${esc(carHref(v))}">${esc(v.title)}</a>` : esc(v.title);
-const waLink = (v) => 'https://wa.me/' + D.whatsapp + '?text=' + encodeURIComponent(v ? `Hi ${D.name}, I'm interested in the ${v.year || ''} ${v.title} ${v.sub} ${v.stock ? ' (stock ' + v.stock + ')' : ''}${isPOA(v) ? '. Please send me the price.' : ' at ' + R(v.price) + '.'} ${carHref(v)}` : `Hi ${D.name}, I have a question.`);
+const waLink = (v) => 'https://wa.me/' + D.whatsapp + '?text=' + encodeURIComponent(v ? `Hi ${D.name}, I'm interested in the ${v.year || ''} ${v.title} ${v.sub} ${v.stock ? ' (stock ' + v.stock + ')' : ''}${isPOA(v) ? '. Please send me the price.' : ' at ' + priceText(v) + '.'} ${carHref(v)}` : `Hi ${D.name}, I have a question.`);
 
 /* ---------- optional: header hides on scroll down, reveals on scroll up ---------- */
 (function headerOnScroll(){
@@ -5012,9 +5020,9 @@ function brandsHTML(){
   const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
   const one = (x, i) => {
     const id = String(x.href || '').replace(/^#/, ''), sec = DATA.sections.find(s => s.id === id), cars = sec ? sec.vehicles.map(k => V[k]).filter(Boolean) : [];
-    const from = cars.filter(v => v.price).reduce((m, v) => Math.min(m, v.price), Infinity);
+    const from = cars.filter(hasPrice).reduce((m, v) => Math.min(m, v.price), Infinity);
     const img = x.image || (lu.find(l => l && l.section === id) || {}).image || '';
-    const line = x.line || (cars.length ? `${cars.length} model${cars.length === 1 ? '' : 's'}${isFinite(from) ? ' · from ' + PR(cars.find(v => v.price === from)) : ''}` : '');
+    const line = x.line || (cars.length ? `${cars.length} model${cars.length === 1 ? '' : 's'}${isFinite(from) ? ' · from ' + PR(cars.find(v => hasPrice(v) && v.price === from)) : ''}` : '');
     return `<a class="bg-tile" href="${esc(x.href || '#')}" style="--i:${i}" aria-label="${esc(x.name)}${line ? ', ' + esc(line) : ''}">
       <span class="bg-logo">${x.logo ? `<img src="${IMG(x.logo)}" alt="" loading="lazy">` : `<b>${esc(x.name)}</b>`}</span>
       <span class="bg-car">${img ? `<img src="${SRC(img, 'card')}" data-orig="${IMG(img)}" alt="" loading="lazy">` : ''}</span>
@@ -5239,8 +5247,8 @@ function wireBannerVideos(){
 function lineupHTML(list){
   const items = list.filter(x => x && x.image).map(x => {
     const sec = DATA.sections.find(s => s.id === x.section), cars = sec ? sec.vehicles.map(id => V[id]).filter(Boolean) : [];
-    const from = cars.filter(v => v.price).reduce((m, v) => Math.min(m, v.price), Infinity);
-    const line = x.line || (cars.length ? `${cars.length} model${cars.length === 1 ? '' : 's'}${isFinite(from) ? ', from ' + PR(cars.find(v => v.price === from)) : ''}` : '');
+    const from = cars.filter(hasPrice).reduce((m, v) => Math.min(m, v.price), Infinity);
+    const line = x.line || (cars.length ? `${cars.length} model${cars.length === 1 ? '' : 's'}${isFinite(from) ? ', from ' + PR(cars.find(v => hasPrice(v) && v.price === from)) : ''}` : '');
     return {...x, line};
   });
   if (!items.length) return '';
